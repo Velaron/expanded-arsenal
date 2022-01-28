@@ -710,7 +710,7 @@ void CSuper ::RunAI( void )
 	}
 	else if ( pev->renderamt < m_iTargetRanderamt )
 	{
-		pev->renderamt = min( pev->renderamt + 50, m_iTargetRanderamt );
+		pev->renderamt = Q_min( pev->renderamt + 50, m_iTargetRanderamt );
 		if ( pev->renderamt == 255 )
 			pev->rendermode = kRenderNormal;
 	}
