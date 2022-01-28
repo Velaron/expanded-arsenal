@@ -705,7 +705,7 @@ void CSuper ::RunAI( void )
 			EMIT_SOUND( ENT( pev ), CHAN_BODY, "debris/beamstart1.wav", 0.2, ATTN_NORM );
 		}
 
-		pev->renderamt = max( pev->renderamt - 50, m_iTargetRanderamt );
+		pev->renderamt = Q_max( pev->renderamt - 50, m_iTargetRanderamt );
 		pev->rendermode = kRenderTransTexture;
 	}
 	else if ( pev->renderamt < m_iTargetRanderamt )
