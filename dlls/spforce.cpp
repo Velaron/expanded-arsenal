@@ -2044,6 +2044,8 @@ Schedule_t *CSpforce ::GetSchedule( void )
 			return GetScheduleOfType( SCHED_SFORCE_ESTABLISH_LINE_OF_FIRE );
 		}
 	}
+	default:
+		break;
 	}
 
 	// no special cases here, call the base class

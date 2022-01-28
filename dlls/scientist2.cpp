@@ -529,6 +529,8 @@ void CScientist2 ::SetYawSpeed( void )
 	case ACT_TURN_RIGHT:
 		ys = 120;
 		break;
+	default:
+		break;
 	}
 
 	pev->yaw_speed = ys;
@@ -901,6 +903,8 @@ Schedule_t *CScientist2 ::GetSchedule( void )
 
 		return slScientistCover2; // Run & Cower
 		break;
+	default:
+		break;
 	}
 
 	return CTalkMonster::GetSchedule();
@@ -947,7 +951,7 @@ MONSTERSTATE CScientist2 ::GetIdealState( void )
 				return m_IdealMonsterState;
 			}
 			// Follow if only scared a little
-			if ( m_hTargetEnt != NULL )
+			if ( m_hTargetEnt != 0 )
 			{
 				m_IdealMonsterState = MONSTERSTATE_ALERT;
 				return m_IdealMonsterState;
@@ -962,6 +966,8 @@ MONSTERSTATE CScientist2 ::GetIdealState( void )
 		}
 	}
 	break;
+	default:
+		break;
 	}
 
 	return CTalkMonster::GetIdealState();
@@ -969,7 +975,7 @@ MONSTERSTATE CScientist2 ::GetIdealState( void )
 
 BOOL CScientist2::CanHeal( void )
 {
-	if ( ( m_healTime > gpGlobals->time ) || ( m_hTargetEnt == NULL ) || ( m_hTargetEnt->pev->health > ( m_hTargetEnt->pev->max_health * 0.5 ) ) )
+	if ( ( m_healTime > gpGlobals->time ) || ( m_hTargetEnt == 0 ) || ( m_hTargetEnt->pev->health > ( m_hTargetEnt->pev->max_health * 0.5 ) ) )
 		return FALSE;
 
 	return TRUE;

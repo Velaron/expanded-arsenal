@@ -51,7 +51,7 @@ public:
 	void HandleAnimEvent( MonsterEvent_t *pEvent );
 	BOOL CheckRangeAttack1( float flDot, float flDist );
 	BOOL CheckRangeAttack2( float flDot, float flDist );
-	void CallForHelp( char *szClassname, float flDist, EHANDLE hEnemy, Vector &vecLocation );
+	void CallForHelp( const char *szClassname, float flDist, EHANDLE hEnemy, Vector &vecLocation );
 	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType );
 	int TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType );
 
@@ -149,7 +149,7 @@ int CISlave2::IRelationship( CBaseEntity *pTarget )
 	return CBaseMonster::IRelationship( pTarget );
 }
 
-void CISlave2 ::CallForHelp( char *szClassname, float flDist, EHANDLE hEnemy, Vector &vecLocation )
+void CISlave2 ::CallForHelp( const char *szClassname, float flDist, EHANDLE hEnemy, Vector &vecLocation )
 {
 	// ALERT( at_aiconsole, "help " );
 
@@ -360,7 +360,7 @@ void CISlave2 ::HandleAnimEvent( MonsterEvent_t *pEvent )
 			WRITE_BYTE( 0 );                   // decay * 0.1
 			MESSAGE_END();
 		}
-		if ( m_hDead != NULL )
+		if ( m_hDead != 0 )
 		{
 			WackBeam( -1, m_hDead );
 			WackBeam( 1, m_hDead );
@@ -381,7 +381,7 @@ void CISlave2 ::HandleAnimEvent( MonsterEvent_t *pEvent )
 	{
 		ClearBeams();
 
-		if ( m_hDead != NULL )
+		if ( m_hDead != 0 )
 		{
 			Vector vecDest = m_hDead->pev->origin + Vector( 0, 0, 38 );
 			TraceResult trace;
@@ -456,7 +456,7 @@ BOOL CISlave2 ::CheckRangeAttack2( float flDot, float flDist )
 		return FALSE;
 	}
 
-	m_hDead = NULL;
+	m_hDead = 0;
 	m_iBravery = 0;
 
 	CBaseEntity *pEntity = NULL;
@@ -483,7 +483,7 @@ BOOL CISlave2 ::CheckRangeAttack2( float flDot, float flDist )
 			}
 		}
 	}
-	if ( m_hDead != NULL )
+	if ( m_hDead != 0 )
 		return TRUE;
 	else
 		return FALSE;
@@ -657,6 +657,8 @@ Schedule_t *CISlave2 ::GetSchedule( void )
 				}
 			}
 		}
+		break;
+	default:
 		break;
 	}
 	return CSquadMonster::GetSchedule();

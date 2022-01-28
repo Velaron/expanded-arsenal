@@ -2014,6 +2014,8 @@ Schedule_t *CAlpha ::GetSchedule( void )
 			return GetScheduleOfType( SCHED_APHA_ESTABLISH_LINE_OF_FIRE );
 		}
 	}
+	default:
+		break;
 	}
 
 	// no special cases here, call the base class
