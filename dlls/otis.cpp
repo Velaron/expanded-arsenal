@@ -210,7 +210,7 @@ void COtis ::RunTask( Task_t *pTask )
 	switch ( pTask->iTask )
 	{
 	case TASK_RANGE_ATTACK1:
-		if ( m_hEnemy != NULL && ( m_hEnemy->IsPlayer() ) || m_fHostile == TRUE )
+		if ( m_hEnemy != 0 && ( m_hEnemy->IsPlayer() ) || m_fHostile == TRUE )
 			pev->framerate = 1.5;
 
 		CTalkMonster::RunTask( pTask );
@@ -247,7 +247,7 @@ int COtis ::Classify( void )
 //=========================================================
 void COtis ::AlertSound( void )
 {
-	if ( m_hEnemy != NULL )
+	if ( m_hEnemy != 0 )
 	{
 		if ( FOkToSpeak() )
 			PlaySentence( "OT_ATTACK", RANDOM_FLOAT( 2.8, 3.2 ), VOL_NORM, ATTN_IDLE );
@@ -517,7 +517,7 @@ int COtis ::TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float f
 
 			// This is a heurstic to determine if the player intended to harm me
 			// If I have an enemy, we can't establish intent (may just be crossfire)
-			if ( m_hEnemy == NULL )
+			if ( m_hEnemy == 0 )
 			{
 				// If the player was facing directly at me, or I'm already suspicious, get mad
 				if ( ( m_afMemory & bits_MEMORY_SUSPICIOUS ) || IsFacing( pevAttacker, pev->origin ) )
@@ -623,7 +623,7 @@ Schedule_t *COtis ::GetScheduleOfType( int Type )
 	switch ( Type )
 	{
 	case SCHED_ARM_WEAPON:
-		if ( m_hEnemy != NULL )
+		if ( m_hEnemy != 0 )
 			return slOtisEnemyDraw;
 		break;
 
@@ -705,7 +705,7 @@ Schedule_t *COtis ::GetSchedule( void )
 		if ( HasConditions( bits_COND_LIGHT_DAMAGE | bits_COND_HEAVY_DAMAGE ) )
 			return GetScheduleOfType( SCHED_SMALL_FLINCH ); // flinch if hurt
 
-		if ( m_hEnemy == NULL && IsFollowing() )
+		if ( m_hEnemy == 0 && IsFollowing() )
 		{
 			if ( !m_hTargetEnt->IsAlive() )
 			{
@@ -763,10 +763,10 @@ public:
 	void KeyValue( KeyValueData *pkvd );
 
 	int m_iPose; // which sequence to display	-- temporary, don't need to save
-	static char *m_szPoses[5];
+	static const char *m_szPoses[5];
 };
 
-char *CDeadOtis::m_szPoses[] = { "lying_on_back", "lying_on_side", "lying_on_stomach", "stuffed_in_vent", "dead_sitting" };
+const char *CDeadOtis::m_szPoses[] = { "lying_on_back", "lying_on_side", "lying_on_stomach", "stuffed_in_vent", "dead_sitting" };
 
 void CDeadOtis::KeyValue( KeyValueData *pkvd )
 {

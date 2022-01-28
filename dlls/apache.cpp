@@ -448,7 +448,7 @@ void CApache::HuntThink( void )
 		}
 	}
 
-	// if( m_hEnemy == NULL )
+	// if( m_hEnemy == 0 )
 	{
 		Look( 4092 );
 		m_hEnemy = BestVisibleEnemy();

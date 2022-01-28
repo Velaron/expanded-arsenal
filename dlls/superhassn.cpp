@@ -216,7 +216,7 @@ void CSuper ::SetYawSpeed( void )
 //=========================================================
 void CSuper ::Shoot( void )
 {
-	if ( m_hEnemy == NULL )
+	if ( m_hEnemy == 0 )
 	{
 		return;
 	}
@@ -603,7 +603,7 @@ IMPLEMENT_CUSTOM_SCHEDULES( CSuper, CBaseMonster );
 //=========================================================
 BOOL CSuper ::CheckMeleeAttack1( float flDot, float flDist )
 {
-	if ( m_flNextJump < gpGlobals->time && ( flDist <= 128 || HasMemory( bits_MEMORY_BADJUMP ) ) && m_hEnemy != NULL )
+	if ( m_flNextJump < gpGlobals->time && ( flDist <= 128 || HasMemory( bits_MEMORY_BADJUMP ) ) && m_hEnemy != 0 )
 	{
 		TraceResult tr;
 
@@ -693,7 +693,7 @@ void CSuper ::RunAI( void )
 
 	// always visible if moving
 	// always visible is not on hard
-	if ( g_iSkillLevel != SKILL_HARD || m_hEnemy == NULL || pev->deadflag != DEAD_NO || m_Activity == ACT_RUN || m_Activity == ACT_WALK || !( pev->flags & FL_ONGROUND ) )
+	if ( g_iSkillLevel != SKILL_HARD || m_hEnemy == 0 || pev->deadflag != DEAD_NO || m_Activity == ACT_RUN || m_Activity == ACT_WALK || !( pev->flags & FL_ONGROUND ) )
 		m_iTargetRanderamt = 255;
 	else
 		m_iTargetRanderamt = 20;

@@ -359,7 +359,7 @@ void CAgent ::JustSpoke( void )
 //=========================================================
 void CAgent ::PrescheduleThink( void )
 {
-	if ( InSquad() && m_hEnemy != NULL )
+	if ( InSquad() && m_hEnemy != 0 )
 	{
 		if ( HasConditions( bits_COND_SEE_ENEMY ) )
 		{
@@ -408,7 +408,7 @@ BOOL CAgent ::CheckMeleeAttack1( float flDot, float flDist )
 {
 	CBaseMonster *pEnemy;
 
-	if ( m_hEnemy != NULL )
+	if ( m_hEnemy != 0 )
 	{
 		pEnemy = m_hEnemy->MyMonsterPointer();
 
@@ -773,7 +773,7 @@ Vector CAgent ::GetGunPosition()
 //=========================================================
 void CAgent ::Shoot( void )
 {
-	if ( m_hEnemy == NULL )
+	if ( m_hEnemy == 0 )
 	{
 		return;
 	}
@@ -800,7 +800,7 @@ void CAgent ::Shoot( void )
 //=========================================================
 void CAgent ::Shotgun( void )
 {
-	if ( m_hEnemy == NULL )
+	if ( m_hEnemy == 0 )
 	{
 		return;
 	}
@@ -1898,10 +1898,10 @@ Schedule_t *CAgent ::GetSchedule( void )
 					// before he starts pluggin away.
 					if ( FOkToSpeak() ) // && RANDOM_LONG(0,1))
 					{
-						if ( ( m_hEnemy != NULL ) && m_hEnemy->IsPlayer() )
+						if ( ( m_hEnemy != 0 ) && m_hEnemy->IsPlayer() )
 							// player
 							SENTENCEG_PlayRndSz( ENT( pev ), "HG_ALERT", AGENT_SENTENCE_VOLUME, SFORCE_ATTN, 0, m_voicePitch );
-						else if ( ( m_hEnemy != NULL ) && ( m_hEnemy->Classify() != CLASS_PLAYER_ALLY ) && ( m_hEnemy->Classify() != CLASS_HUMAN_PASSIVE ) && ( m_hEnemy->Classify() != CLASS_MACHINE ) )
+						else if ( ( m_hEnemy != 0 ) && ( m_hEnemy->Classify() != CLASS_PLAYER_ALLY ) && ( m_hEnemy->Classify() != CLASS_HUMAN_PASSIVE ) && ( m_hEnemy->Classify() != CLASS_MACHINE ) )
 							// monster
 							SENTENCEG_PlayRndSz( ENT( pev ), "HG_MONST", AGENT_SENTENCE_VOLUME, SFORCE_ATTN, 0, m_voicePitch );
 
@@ -1936,7 +1936,7 @@ Schedule_t *CAgent ::GetSchedule( void )
 			// 10% chance of flinch.
 			int iPercent = RANDOM_LONG( 0, 99 );
 
-			if ( iPercent <= 90 && m_hEnemy != NULL )
+			if ( iPercent <= 90 && m_hEnemy != 0 )
 			{
 				// only try to take cover if we actually have an enemy!
 
@@ -2170,7 +2170,7 @@ Schedule_t *CAgent ::GetScheduleOfType( int Type )
 	}
 	case SCHED_FAIL:
 	{
-		if ( m_hEnemy != NULL )
+		if ( m_hEnemy != 0 )
 		{
 			// grunt has an enemy, so pick a different default fail schedule most likely to help recover.
 			return &slGentCombatFail[0];
@@ -2270,10 +2270,10 @@ public:
 	void KeyValue( KeyValueData *pkvd );
 
 	int m_iPose; // which sequence to display	-- temporary, don't need to save
-	static char *m_szPoses[3];
+	static const char *m_szPoses[3];
 };
 
-char *CDeadAgent::m_szPoses[] = { "deadstomach", "deadside", "deadsitting" };
+const char *CDeadAgent::m_szPoses[] = { "deadstomach", "deadside", "deadsitting" };
 
 void CDeadAgent::KeyValue( KeyValueData *pkvd )
 {

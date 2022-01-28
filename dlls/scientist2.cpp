@@ -359,7 +359,7 @@ void CScientist2 ::Scream( void )
 
 Activity CScientist2::GetStoppedActivity( void )
 {
-	if ( m_hEnemy != NULL )
+	if ( m_hEnemy != 0 )
 		return ACT_EXCITED;
 	return CTalkMonster::GetStoppedActivity();
 }
@@ -444,7 +444,7 @@ void CScientist2 ::RunTask( Task_t *pTask )
 		if ( RANDOM_LONG( 0, 63 ) < 8 )
 			Scream();
 
-		if ( m_hEnemy == NULL )
+		if ( m_hEnemy == 0 )
 		{
 			TaskFail();
 		}
@@ -1008,9 +1008,9 @@ public:
 
 	void KeyValue( KeyValueData *pkvd );
 	int m_iPose; // which sequence to display
-	static char *m_szPoses[7];
+	static const char *m_szPoses[7];
 };
-char *CDeadScientist2::m_szPoses[] = { "lying_on_back", "lying_on_stomach", "dead_sitting", "dead_hang", "dead_table1", "dead_table2", "dead_table3" };
+const char *CDeadScientist2::m_szPoses[] = { "lying_on_back", "lying_on_stomach", "dead_sitting", "dead_hang", "dead_table1", "dead_table2", "dead_table3" };
 
 void CDeadScientist2::KeyValue( KeyValueData *pkvd )
 {

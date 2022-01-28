@@ -205,7 +205,7 @@ void CHeadCrab2 ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		UTIL_MakeVectors( pev->angles );
 
 		Vector vecJumpDir;
-		if ( m_hEnemy != NULL )
+		if ( m_hEnemy != 0 )
 		{
 			float gravity = g_psv_gravity->value;
 			if ( gravity <= 1 )
@@ -516,7 +516,7 @@ Schedule_t *CBabyCrab2 ::GetScheduleOfType( int Type )
 	switch ( Type )
 	{
 	case SCHED_FAIL: // If you fail, try to jump!
-		if ( m_hEnemy != NULL )
+		if ( m_hEnemy != 0 )
 			return slHCRangeAttack1Fast2;
 		break;
 

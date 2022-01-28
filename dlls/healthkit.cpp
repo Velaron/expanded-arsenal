@@ -278,8 +278,6 @@ void CHealthSup::Spawn( void )
 
 BOOL CHealthSup::MyTouch( CBasePlayer *pPlayer )
 {
-	int minushp;
-
 	if ( pPlayer->pev->deadflag != DEAD_NO )
 	{
 		return FALSE;
