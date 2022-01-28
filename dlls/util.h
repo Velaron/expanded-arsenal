@@ -179,6 +179,7 @@ inline BOOL FStringNull(int iString)			{ return iString == iStringNull; }
 // All monsters need this data
 #define		DONT_BLEED			-1
 #define		BLOOD_COLOR_RED		(BYTE)247
+#define BLOOD_COLOR_BLACK       (BYTE)0
 #define		BLOOD_COLOR_YELLOW	(BYTE)195
 #define		BLOOD_COLOR_GREEN	BLOOD_COLOR_YELLOW
 
@@ -444,6 +445,7 @@ extern DLL_GLOBAL int			g_Language;
 #define SF_BRUSH_ROTATE_SMALLRADIUS	128
 #define SF_BRUSH_ROTATE_MEDIUMRADIUS 256
 #define SF_BRUSH_ROTATE_LARGERADIUS 512
+// Velaron: set to 1024?
 
 #define PUSH_BLOCK_ONLY_X	1
 #define PUSH_BLOCK_ONLY_Y	2

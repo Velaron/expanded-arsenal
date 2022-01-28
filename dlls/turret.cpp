@@ -41,6 +41,9 @@ extern Vector VecBModelOrigin( entvars_t* pevBModel );
 #define TURRET_MAXSPIN	5		// seconds turret barrel will spin w/o a target
 #define TURRET_MACHINE_VOLUME	0.5
 
+#define TURRET_BODY_GUNGONE	3
+#define SENTRY_BODY_GUNGONE	4
+
 typedef enum
 {
 	TURRET_ANIM_NONE = 0,
@@ -917,6 +920,19 @@ void CBaseTurret::TurretDeath( void )
 {
 	//BOOL iActive = FALSE;
 
+	// drop the gun!
+	if ( pev->body < TURRET_BODY_GUNGONE )
+	{
+		Vector vecGunPos;
+		Vector vecGunAngles;
+
+		pev->body = TURRET_BODY_GUNGONE;
+
+		GetAttachment( 0, vecGunPos, vecGunAngles );
+
+		CBaseEntity *pGun = DropItem( "ammo_turret", vecGunPos, vecGunAngles );
+	}
+
 	StudioFrameAdvance();
 	pev->nextthink = gpGlobals->time + 0.1f;
 
@@ -1238,6 +1254,19 @@ void CSentry::SentryTouch( CBaseEntity *pOther )
 void CSentry::SentryDeath( void )
 {
 	//BOOL iActive = FALSE;
+
+	// drop the gun!
+	if ( pev->body < SENTRY_BODY_GUNGONE )
+	{
+		Vector vecGunPos;
+		Vector vecGunAngles;
+
+		pev->body = SENTRY_BODY_GUNGONE;
+
+		GetAttachment( 0, vecGunPos, vecGunAngles );
+
+		CBaseEntity *pGun = DropItem( "ammo_20mm", vecGunPos, vecGunAngles );
+	}
 
 	StudioFrameAdvance();
 	pev->nextthink = gpGlobals->time + 0.1f;

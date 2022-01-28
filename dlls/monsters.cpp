@@ -945,7 +945,7 @@ BOOL CBaseMonster::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CBaseMonster::CheckRangeAttack2( float flDot, float flDist )
 {
-	if( flDist > 64.0f && flDist <= 512.0f && flDot >= 0.5f )
+	if( flDist > 64.0f && flDist <= 1024.0f && flDot >= 0.5f )
 	{
 		return TRUE;
 	}

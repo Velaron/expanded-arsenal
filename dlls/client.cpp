@@ -1765,11 +1765,21 @@ void UpdateClientData( const struct edict_s *ent, int sendweapons, struct client
 			cd->fuser2 = pl->m_flNextAmmoBurn;
 			cd->fuser3 = pl->m_flAmmoStartCharge;
 			cd->vuser1.x = pl->ammo_9mm;
+
+			// Velaron: ???
+			cd->vuser1.y = pl->ammo_556mm;
+			cd->vuser1.y = pl->ammo_357mm;
+
 			cd->vuser1.y = pl->ammo_357;
 			cd->vuser1.z = pl->ammo_argrens;
 			cd->ammo_nails = pl->ammo_bolts;
 			cd->ammo_shells = pl->ammo_buckshot;
 			cd->ammo_rockets = pl->ammo_rockets;
+
+			// Velaron: ???
+			cd->vuser1.y		= pl->ammo_762mm;
+			cd->vuser1.y		= pl->ammo_fuel;
+
 			cd->ammo_cells = pl->ammo_uranium;
 			cd->vuser2.x = pl->ammo_hornets;
 

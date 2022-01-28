@@ -21,9 +21,9 @@
 #
 
 cmake_minimum_required(VERSION 2.8.12)
-project (CLDLL)
+project(client)
 
-set (CLDLL_LIBRARY client)
+set(CLDLL_LIBRARY client)
 
 include(CheckIncludeFile)
 check_include_file("tgmath.h" HAVE_TGMATH_H)
@@ -39,6 +39,7 @@ if(NOT MSVC)
 	add_compile_options(-fvisibility=hidden) # GCC/Clang flag
 	add_definitions(-D_LINUX -DLINUX) # It seems enough for all non-Win32 systems
 	add_definitions(-Dstricmp=strcasecmp -Dstrnicmp=strncasecmp)
+
 	if(NOT MINGW)
 		add_definitions(-D_snprintf=snprintf -D_vsnprintf=vsnprintf)
 	endif()
@@ -60,28 +61,43 @@ if (USE_VGUI)
 	endif()
 endif()
 
-set (CLDLL_SOURCES
+set(CLDLL_SOURCES
+	../dlls/ak47.cpp
+	../dlls/autosniper.cpp
+	../dlls/beretta.cpp
+	../dlls/chaingun.cpp
+	../dlls/colt45.cpp
 	../dlls/crossbow.cpp
-	../dlls/crowbar.cpp
+	../dlls/crowbar2.cpp
+	../dlls/d50.cpp
+	../dlls/dbarrel.cpp
+	../dlls/deagle.cpp
 	../dlls/egon.cpp
+	../dlls/fnfal.cpp
 	../dlls/gauss.cpp
+	../dlls/glock.cpp
 	../dlls/handgrenade.cpp
 	../dlls/hornetgun.cpp
+	../dlls/knife.cpp
+	../dlls/ksg12.cpp
+	../dlls/m1014.cpp
+	../dlls/m41.cpp
 	../dlls/mp5.cpp
+	../dlls/mp5a3.cpp
+	../dlls/p226.cpp
+	../dlls/p904.cpp
+	../dlls/pipe.cpp
 	../dlls/python.cpp
 	../dlls/rpg.cpp
 	../dlls/satchel.cpp
 	../dlls/shotgun.cpp
 	../dlls/squeakgrenade.cpp
 	../dlls/tripmine.cpp
-	../dlls/glock.cpp
-	ev_hldm.cpp
-	hl/hl_baseentity.cpp
-	hl/hl_events.cpp
-	hl/hl_objects.cpp
-	hl/hl_weapons.cpp
-	ammo.cpp
+	../pm_shared/pm_debug.c
+	../pm_shared/pm_math.c
+	../pm_shared/pm_shared.c
 	ammo_secondary.cpp
+	ammo.cpp
 	ammohistory.cpp
 	battery.cpp
 	cdll_int.cpp
@@ -90,28 +106,29 @@ set (CLDLL_SOURCES
 	demo.cpp
 	entity.cpp
 	ev_common.cpp
+	ev_hldm.cpp
 	events.cpp
 	flashlight.cpp
 	GameStudioModelRenderer.cpp
 	geiger.cpp
 	health.cpp
-	hud.cpp
+	hl/hl_baseentity.cpp
+	hl/hl_events.cpp
+	hl/hl_objects.cpp
+	hl/hl_weapons.cpp
 	hud_msg.cpp
 	hud_redraw.cpp
 	hud_spectator.cpp
 	hud_update.cpp
+	hud.cpp
 	in_camera.cpp
-	input.cpp
 	input_goldsource.cpp
 	input_mouse.cpp
 	input_xash3d.cpp
+	input.cpp
 	menu.cpp
 	message.cpp
-	overview.cpp
 	parsemsg.cpp
-	../pm_shared/pm_debug.c
-	../pm_shared/pm_math.c
-	../pm_shared/pm_shared.c
 	saytext.cpp
 	status_icons.cpp
 	statusbar.cpp
@@ -121,7 +138,8 @@ set (CLDLL_SOURCES
 	train.cpp
 	tri.cpp
 	util.cpp
-	view.cpp)
+	view.cpp
+)
 
 if (USE_VGUI)
 	list(APPEND CLDLL_SOURCES
@@ -136,7 +154,6 @@ if (USE_VGUI)
 		vgui_TeamFortressViewport.cpp
 		vgui_SpectatorPanel.cpp
 		vgui_teammenu.cpp
-		voice_status.cpp
 		../game_shared/vgui_checkbutton2.cpp
 		../game_shared/vgui_grid.cpp
 		../game_shared/vgui_helpers.cpp
@@ -144,7 +161,6 @@ if (USE_VGUI)
 		../game_shared/vgui_loadtga.cpp
 		../game_shared/vgui_scrollbar2.cpp
 		../game_shared/vgui_slider2.cpp
-		../game_shared/voice_banmgr.cpp
 		)
 	if (USE_NOVGUI_MOTD)
 		list(APPEND CLDLL_SOURCES MOTD.cpp)
@@ -158,40 +174,24 @@ else()
 		scoreboard.cpp)
 endif()
 
-include_directories (. hl/ ../dlls ../dlls/wpn_shared ../common ../engine ../pm_shared ../game_shared ../public)
+include_directories(. ../dlls ../common ../engine ../pm_shared ../game_shared)
 
 if (USE_VGUI)
-	SET(CMAKE_SKIP_RPATH TRUE)
-	link_directories(${CMAKE_SOURCE_DIR}/vgui-dev/lib)
-	include_directories(../vgui-dev/include)
-else()
-	include_directories(../utils/false_vgui/include)
+	include_directories(../vgui/include)
 endif()
 
 if(USE_VOICEMGR)
-	#set(CLDLL_SOURCES
-	#	${CLDLL_SOURCES}
-	#	../game_shared/voice_banmgr.cpp
-	#	../game_shared/voice_status.cpp)
+	list(APPEND CLDLL_SOURCES ../game_shared/voice_banmgr.cpp voice_status.cpp)
 endif()
 
-add_library (${CLDLL_LIBRARY} SHARED ${CLDLL_SOURCES})
+add_library(${CLDLL_LIBRARY} MODULE ${CLDLL_SOURCES})
 
 if (GOLDSOURCE_SUPPORT)
 	target_link_libraries( ${CLDLL_LIBRARY} ${CMAKE_DL_LIBS} )
 endif()
 
 if (USE_VGUI)
-	if (WIN32)
-		add_library(vgui SHARED IMPORTED)
-		set_property(TARGET vgui PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/vgui-dev/lib/win32_vc6/vgui.dll")
-		set_property(TARGET vgui PROPERTY IMPORTED_IMPLIB "${CMAKE_SOURCE_DIR}/vgui-dev/lib/win32_vc6/vgui.lib")
-		target_link_libraries(${CLDLL_LIBRARY} vgui)
-	elseif(APPLE)
-		target_link_libraries(${CLDLL_LIBRARY} "-Wl,--no-undefined -L${CMAKE_SOURCE_DIR}/vgui-dev/lib vgui.dylib")
-	else()
-		target_link_libraries(${CLDLL_LIBRARY} :vgui.so)
-	endif()
+	target_link_libraries(${CLDLL_LIBRARY} vgui)
 endif()
 
 if(WIN32)
@@ -215,8 +215,14 @@ if(MSVC)
 	set_property(TARGET ${CLDLL_LIBRARY} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
-install( TARGETS ${CLDLL_LIBRARY}
+install(TARGETS ${CLDLL_LIBRARY}
 	DESTINATION "${GAMEDIR}/${CLIENT_INSTALL_DIR}/"
 	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
 	    GROUP_READ GROUP_EXECUTE
-		WORLD_READ WORLD_EXECUTE )
+		WORLD_READ WORLD_EXECUTE)
+
+# Install PDB file on Windows
+if(WIN32 AND MSVC)
+	install(FILES $<TARGET_PDB_FILE:${CLDLL_LIBRARY}>
+		DESTINATION "${GAMEDIR}/${CLIENT_INSTALL_DIR}/" OPTIONAL)
+endif()

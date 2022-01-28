@@ -185,6 +185,7 @@ void CSatchelCharge::BounceSound( void )
 }
 
 LINK_ENTITY_TO_CLASS( weapon_satchel, CSatchel )
+LINK_ENTITY_TO_CLASS( weapon_nuclear, CSatchel )
 
 //=========================================================
 // CALLED THROUGH the newly-touched weapon's instance. The existing player weapon is pOriginal

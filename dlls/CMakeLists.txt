@@ -21,9 +21,9 @@
 #
 
 cmake_minimum_required(VERSION 2.8.12)
-project (SVDLL)
+project(server)
 
-set (SVDLL_LIBRARY server)
+set(SVDLL_LIBRARY expanded_arsenal)
 
 include(CheckIncludeFile)
 check_include_file("tgmath.h" HAVE_TGMATH_H)
@@ -43,32 +43,49 @@ else()
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
 endif()
 
-set (SVDLL_SOURCES
+set(SVDLL_SOURCES
+	../pm_shared/pm_debug.c
+	../pm_shared/pm_math.c
+	../pm_shared/pm_shared.c
+	aflock.cpp
+	agent.cpp
 	agrunt.cpp
 	airtank.cpp
-	aflock.cpp
+	ak47.cpp
+	alpha.cpp
 	animating.cpp
 	animation.cpp
+	anime.cpp
 	apache.cpp
+	autosniper.cpp
 	barnacle.cpp
 	barney.cpp
+	barniel.cpp
+	beretta.cpp
 	bigmomma.cpp
 	bloater.cpp
 	bmodels.cpp
+	boss.cpp
 	bullsquid.cpp
 	buttons.cpp
 	cbase.cpp
+	chaingun.cpp
 	client.cpp
+	colt45.cpp
 	combat.cpp
 	controller.cpp
 	crossbow.cpp
-	crowbar.cpp
+	crowbar2.cpp
+	d50.cpp
+	dbarrel.cpp
+	deagle.cpp
 	defaultai.cpp
 	doors.cpp
 	effects.cpp
 	egon.cpp
 	explode.cpp
 	flyingmonster.cpp
+	fnfal.cpp
 	func_break.cpp
 	func_tank.cpp
 	game.cpp
@@ -78,8 +95,8 @@ set (SVDLL_SOURCES
 	genericmonster.cpp
 	ggrenade.cpp
 	globals.cpp
-	glock.cpp
 	gman.cpp
+	guard.cpp
 	h_ai.cpp
 	h_battery.cpp
 	h_cine.cpp
@@ -88,6 +105,7 @@ set (SVDLL_SOURCES
 	handgrenade.cpp
 	hassassin.cpp
 	headcrab.cpp
+	headcrab2.cpp
 	healthkit.cpp
 	hgrunt.cpp
 	hornet.cpp
@@ -95,42 +113,58 @@ set (SVDLL_SOURCES
 	houndeye.cpp
 	ichthyosaur.cpp
 	islave.cpp
+	islave2.cpp
 	items.cpp
+	knife.cpp
+	ksg12.cpp
 	leech.cpp
 	lights.cpp
+	m1014.cpp
+	m41.cpp
 	maprules.cpp
+	massn.cpp
 	monstermaker.cpp
 	monsters.cpp
 	monsterstate.cpp
 	mortar.cpp
 	mp5.cpp
+	mp5a3.cpp
 	multiplay_gamerules.cpp
 	nihilanth.cpp
 	nodes.cpp
 	observer.cpp
 	osprey.cpp
+	otis.cpp
+	p226.cpp
+	p904.cpp
 	pathcorner.cpp
+	pipe.cpp
 	plane.cpp
 	plats.cpp
 	player.cpp
-	playermonster.cpp
+	police.cpp
 	python.cpp
 	rat.cpp
 	roach.cpp
+	robot.cpp
 	rpg.cpp
 	satchel.cpp
 	schedule.cpp
 	scientist.cpp
+	scientist2.cpp
 	scripted.cpp
 	shotgun.cpp
 	singleplay_gamerules.cpp
 	skill.cpp
 	sound.cpp
 	soundent.cpp
+	space.cpp
 	spectator.cpp
+	spforce.cpp
 	squadmonster.cpp
 	squeakgrenade.cpp
 	subs.cpp
+	superhassn.cpp
 	talkmonster.cpp
 	teamplay_gamerules.cpp
 	tempmonster.cpp
@@ -142,18 +176,17 @@ set (SVDLL_SOURCES
 	weapons.cpp
 	world.cpp
 	xen.cpp
+	zombie_barney.cpp
+	zombie_grunt.cpp
 	zombie.cpp
-	../pm_shared/pm_debug.c
-	../pm_shared/pm_math.c
-	../pm_shared/pm_shared.c
 )
 
-include_directories (. wpn_shared ../common ../engine ../pm_shared ../game_shared ../public)
+include_directories(. ../cl_dll ../common ../engine ../pm_shared ../game_shared)
 
 if(MSVC)
 	set(SVDLL_SOURCES
 		${SVDLL_SOURCES}
-		hl.def)
+		expanded_arsenal.def)
 endif()
 
 if(USE_VOICEMGR)
@@ -164,7 +197,7 @@ else()
 	add_definitions(-DNO_VOICEGAMEMGR)
 endif()
 
-add_library (${SVDLL_LIBRARY} SHARED ${SVDLL_SOURCES})
+add_library(${SVDLL_LIBRARY} MODULE ${SVDLL_SOURCES})
 
 set_target_properties (${SVDLL_LIBRARY} PROPERTIES
 	POSITION_INDEPENDENT_CODE 1)
@@ -186,3 +219,9 @@ install( TARGETS ${SVDLL_LIBRARY}
 	PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
 	    GROUP_READ GROUP_EXECUTE
 		WORLD_READ WORLD_EXECUTE)
+
+# Install PDB file on Windows
+if(WIN32 AND MSVC)
+	install(FILES $<TARGET_PDB_FILE:${SVDLL_LIBRARY}>
+		DESTINATION "${GAMEDIR}/${SERVER_INSTALL_DIR}/" OPTIONAL)
+endif()

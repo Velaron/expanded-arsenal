@@ -64,6 +64,8 @@ int iAgruntMuzzleFlash;
 #define		AGRUNT_AE_LEFT_PUNCH ( 12 )
 #define		AGRUNT_AE_RIGHT_PUNCH ( 13 )
 
+#define		AGRUNT_BODY_GUNGONE ( 14 )
+
 #define		AGRUNT_MELEE_DIST	100.0f
 
 class CAGrunt : public CSquadMonster
@@ -89,6 +91,7 @@ public:
 	void StartTask( Task_t *pTask );
 	void AlertSound( void );
 	void DeathSound( void );
+	void GibMonster( void );
 	void PainSound( void );
 	void AttackSound( void );
 	void PrescheduleThink( void );
@@ -326,6 +329,24 @@ void CAGrunt::PrescheduleThink( void )
 			}
 		}
 	}
+}
+
+void CAGrunt::GibMonster( void )
+{
+	// drop the gun!
+	if ( GetBodygroup( 1 ) != 1 )
+	{
+		Vector vecGunPos;
+		Vector vecGunAngles;
+
+		pev->body = AGRUNT_BODY_GUNGONE;
+
+		GetAttachment( 0, vecGunPos, vecGunAngles );
+
+		CBaseEntity *pGun = DropItem( "weapon_hornetgun", vecGunPos, vecGunAngles );
+	}
+
+	CBaseMonster::GibMonster();
 }
 
 //=========================================================

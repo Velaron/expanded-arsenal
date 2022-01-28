@@ -67,6 +67,23 @@ CHandGrenade g_HandGren;
 CSatchel g_Satchel;
 CTripmine g_Tripmine;
 CSqueak g_Snark;
+CKnife g_Knife;
+CAK47 g_AK47;
+CMP5A3 g_Mp5a3;
+CDbarrel g_CDbarrel;
+CBeretta g_CBeretta;
+CDeagle g_CDeagle;
+CM41 g_CM41;
+CPipe g_CPipe;
+CAUTOSNIPER g_CAutoSniper;
+CD50 g_CD50;
+CColt45 g_CColt45;
+CM1014 g_M1014;
+CP226 g_CP226;
+CFNFAL g_fnfal;
+CKSG12 g_KSG12;
+CP904 g_P904;
+CChaingun g_CG;
 
 /*
 ======================
@@ -620,6 +637,23 @@ void HUD_InitClientWeapons( void )
 	HUD_PrepEntity( &g_Satchel, &player );
 	HUD_PrepEntity( &g_Tripmine, &player );
 	HUD_PrepEntity( &g_Snark, &player );
+	HUD_PrepEntity( &g_Knife, &player );
+	HUD_PrepEntity( &g_AK47, &player );
+	HUD_PrepEntity( &g_Mp5a3, &player );
+	HUD_PrepEntity( &g_CDbarrel, &player );
+	HUD_PrepEntity( &g_CBeretta, &player );
+	HUD_PrepEntity( &g_CDeagle, &player );
+	HUD_PrepEntity( &g_CM41, &player );
+	HUD_PrepEntity( &g_CP226, &player );
+	HUD_PrepEntity( &g_CPipe, &player );
+	HUD_PrepEntity( &g_CAutoSniper, &player );
+	HUD_PrepEntity( &g_CD50, &player );
+	HUD_PrepEntity( &g_CColt45, &player );
+	HUD_PrepEntity( &g_M1014, &player );
+	HUD_PrepEntity( &g_fnfal, &player );
+	HUD_PrepEntity( &g_KSG12, &player );
+	HUD_PrepEntity( &g_P904, &player );
+	HUD_PrepEntity( &g_CG, &player );
 }
 
 /*
@@ -725,6 +759,57 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		case WEAPON_SNARK:
 			pWeapon = &g_Snark;
 			break;
+	    case WEAPON_KNIFE:
+		    pWeapon = &g_Knife;
+		    break;
+	    case WEAPON_AK47:
+		    pWeapon = &g_AK47;
+		    break;
+	    case WEAPON_MP5A3:
+		    pWeapon = &g_Mp5a3;
+		    break;
+	    case WEAPON_FNFAL:
+		    pWeapon = &g_fnfal;
+		    break;
+	    case WEAPON_DBARREL:
+		    pWeapon = &g_CDbarrel;
+		    break;
+	    case WEAPON_BERETTA:
+		    pWeapon = &g_CBeretta;
+		    break;
+	    case WEAPON_DEAGLE:
+		    pWeapon = &g_CDeagle;
+		    break;
+	    case WEAPON_M41:
+		    pWeapon = &g_CM41;
+		    break;
+	    case WEAPON_PIPE:
+		    pWeapon = &g_CPipe;
+		    break;
+	    case WEAPON_AUTOSNIPER:
+		    pWeapon = &g_CAutoSniper;
+		    break;
+	    case WEAPON_D50:
+		    pWeapon = &g_CD50;
+		    break;
+	    case WEAPON_COLT45:
+		    pWeapon = &g_CColt45;
+		    break;
+	    case WEAPON_M1014:
+		    pWeapon = &g_M1014;
+		    break;
+	    case WEAPON_KSG12:
+		    pWeapon = &g_KSG12;
+		    break;
+	    case WEAPON_P904:
+		    pWeapon = &g_P904;
+		    break;
+	    case WEAPON_P226:
+		    pWeapon = &g_CP226;
+		    break;
+	    case WEAPON_CHAINGUN:
+		    pWeapon = &g_CG;
+		    break;
 	}
 
 	// Store pointer to our destination entity_state_t so we can get our origin, etc. from it
@@ -817,6 +902,8 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	player.ammo_9mm = (int)from->client.vuser1[0];
 	player.ammo_357 = (int)from->client.vuser1[1];
 	player.ammo_argrens = (int)from->client.vuser1[2];
+	player.ammo_556mm = (int)from->client.vuser1[1];
+	player.ammo_357mm = (int)from->client.vuser1[1];
 	player.ammo_bolts = (int)from->client.ammo_nails; //is an int anyways...
 	player.ammo_buckshot = (int)from->client.ammo_shells; 
 	player.ammo_uranium = (int)from->client.ammo_cells;
@@ -890,6 +977,8 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	to->client.vuser1[0] = player.ammo_9mm;
 	to->client.vuser1[1] = player.ammo_357;
 	to->client.vuser1[2] = player.ammo_argrens;
+	to->client.vuser1[1] = player.ammo_556mm;
+	to->client.vuser1[1] = player.ammo_357mm;
 
 	to->client.ammo_nails = player.ammo_bolts;
 	to->client.ammo_shells = player.ammo_buckshot;

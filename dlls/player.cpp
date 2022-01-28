@@ -201,7 +201,7 @@ void LinkUserMessages( void )
 	gmsgGeigerRange = REG_USER_MSG( "Geiger", 1 );
 	gmsgFlashlight = REG_USER_MSG( "Flashlight", 2 );
 	gmsgFlashBattery = REG_USER_MSG( "FlashBat", 1 );
-	gmsgHealth = REG_USER_MSG( "Health", 1 );
+	gmsgHealth = REG_USER_MSG( "Health", -1 );
 	gmsgDamage = REG_USER_MSG( "Damage", 12 );
 	gmsgBattery = REG_USER_MSG( "Battery", 2);
 	gmsgTrain = REG_USER_MSG( "Train", 1 );
@@ -228,7 +228,7 @@ void LinkUserMessages( void )
 	gmsgShowMenu = REG_USER_MSG( "ShowMenu", -1 );
 	gmsgShake = REG_USER_MSG( "ScreenShake", sizeof(ScreenShake) );
 	gmsgFade = REG_USER_MSG( "ScreenFade", sizeof(ScreenFade) );
-	gmsgAmmoX = REG_USER_MSG( "AmmoX", 2 );
+	gmsgAmmoX = REG_USER_MSG( "AmmoX", -1 );
 	gmsgTeamNames = REG_USER_MSG( "TeamNames", -1 );
 	gmsgBhopcap = REG_USER_MSG( "Bhopcap", 1 );
 
@@ -1100,11 +1100,16 @@ all the ammo we have into the ammo vars.
 void CBasePlayer::TabulateAmmo()
 {
 	ammo_9mm = AmmoInventory( GetAmmoIndex( "9mm" ) );
+	ammo_20mm = AmmoInventory( GetAmmoIndex( "20MM" ) );
+	ammo_762mm = AmmoInventory( GetAmmoIndex( "762MM" ) );
+	ammo_556mm = AmmoInventory( GetAmmoIndex( "556" ) );
 	ammo_357 = AmmoInventory( GetAmmoIndex( "357" ) );
+	ammo_357mm = AmmoInventory( GetAmmoIndex( "357" ) );
 	ammo_argrens = AmmoInventory( GetAmmoIndex( "ARgrenades" ) );
 	ammo_bolts = AmmoInventory( GetAmmoIndex( "bolts" ) );
 	ammo_buckshot = AmmoInventory( GetAmmoIndex( "buckshot" ) );
 	ammo_rockets = AmmoInventory( GetAmmoIndex( "rockets" ) );
+	ammo_fuel = AmmoInventory( GetAmmoIndex( "fuel" ) );
 	ammo_uranium = AmmoInventory( GetAmmoIndex( "uranium" ) );
 	ammo_hornets = AmmoInventory( GetAmmoIndex( "Hornets" ) );
 }
@@ -3460,6 +3465,20 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		gEvilImpulse101 = TRUE;
 		GiveNamedItem( "item_suit" );
 		GiveNamedItem( "item_battery" );
+		GiveNamedItem( "weapon_knife" );
+		GiveNamedItem( "weapon_dbarrel" );
+		GiveNamedItem( "weapon_beretta" );
+		GiveNamedItem( "weapon_ak47" );
+		GiveNamedItem( "weapon_fnfal" );
+		GiveNamedItem( "weapon_m41" );
+		GiveNamedItem( "weapon_p226" );
+		GiveNamedItem( "weapon_pipe" );
+		GiveNamedItem( "weapon_m1014" );
+		GiveNamedItem( "weapon_d50" );
+		GiveNamedItem( "weapon_asniper" );
+		GiveNamedItem( "weapon_colt45" );
+		GiveNamedItem( "weapon_deagle" );
+		GiveNamedItem( "weapon_mp5a3" );
 		GiveNamedItem( "weapon_crowbar" );
 		GiveNamedItem( "weapon_9mmhandgun" );
 		GiveNamedItem( "ammo_9mmclip" );
@@ -3470,8 +3489,13 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "ammo_ARgrenades" );
 		GiveNamedItem( "weapon_handgrenade" );
 		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_p904" );
+		GiveNamedItem( "weapon_chaingun" );
+		// Velaron: what?
+		GiveNamedItem( "`12" );
 #if !OEM_BUILD
 		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "weapon_flamethrower" );
 		GiveNamedItem( "ammo_357" );
 		GiveNamedItem( "weapon_crossbow" );
 		GiveNamedItem( "ammo_crossbow" );
@@ -3847,8 +3871,8 @@ void CBasePlayer::SendAmmoUpdate( void )
 
 			// send "Ammo" update message
 			MESSAGE_BEGIN( MSG_ONE, gmsgAmmoX, NULL, pev );
-				WRITE_BYTE( i );
-				WRITE_BYTE( Q_max( Q_min( m_rgAmmo[i], 254 ), 0 ) );  // clamp the value to one byte
+				WRITE_SHORT( i );
+				WRITE_SHORT( Q_max( Q_min( m_rgAmmo[i], 999 ), 0 ) );  // clamp the value to one byte
 			MESSAGE_END();
 		}
 	}
@@ -3944,7 +3968,7 @@ void CBasePlayer::UpdateClientData( void )
 
 		// send "health" update message
 		MESSAGE_BEGIN( MSG_ONE, gmsgHealth, NULL, pev );
-			WRITE_BYTE( iHealth );
+			WRITE_SHORT( iHealth );
 		MESSAGE_END();
 
 		m_iClientHealth = (int)pev->health;

@@ -79,6 +79,11 @@ cvar_t	sk_barney_health1 = {"sk_barney_health1","0"};
 cvar_t	sk_barney_health2 = {"sk_barney_health2","0"};
 cvar_t	sk_barney_health3 = {"sk_barney_health3","0"};
 
+// Anime?
+cvar_t sk_anime_health1 = { "sk_anime_health1", "0" };
+cvar_t sk_anime_health2 = { "sk_anime_health2", "0" };
+cvar_t sk_anime_health3 = { "sk_anime_health3", "0" };
+
 // Bullsquid
 cvar_t	sk_bullsquid_health1 = {"sk_bullsquid_health1","0"};
 cvar_t	sk_bullsquid_health2 = {"sk_bullsquid_health2","0"};
@@ -137,6 +142,10 @@ cvar_t	sk_hassassin_health1 = {"sk_hassassin_health1","0"};
 cvar_t	sk_hassassin_health2 = {"sk_hassassin_health2","0"};
 cvar_t	sk_hassassin_health3 = {"sk_hassassin_health3","0"};
 
+// Super?
+cvar_t sk_super_health1 = { "sk_super_health1", "0" };
+cvar_t sk_super_health2 = { "sk_super_health2", "0" };
+cvar_t sk_super_health3 = { "sk_super_health3", "0" };
 
 // Headcrab
 cvar_t	sk_headcrab_health1 = {"sk_headcrab_health1","0"};
@@ -147,6 +156,14 @@ cvar_t	sk_headcrab_dmg_bite1 = {"sk_headcrab_dmg_bite1","0"};
 cvar_t	sk_headcrab_dmg_bite2 = {"sk_headcrab_dmg_bite2","0"};
 cvar_t	sk_headcrab_dmg_bite3 = {"sk_headcrab_dmg_bite3","0"};
 
+// Headcrab2
+cvar_t sk_headcrab2_health1 = { "sk_headcrab2_health1", "0" };
+cvar_t sk_headcrab2_health2 = { "sk_headcrab2_health2", "0" };
+cvar_t sk_headcrab2_health3 = { "sk_headcrab2_health3", "0" };
+
+cvar_t sk_headcrab2_dmg_bite1 = { "sk_headcrab2_dmg_bite1", "0" };
+cvar_t sk_headcrab2_dmg_bite2 = { "sk_headcrab2_dmg_bite2", "0" };
+cvar_t sk_headcrab2_dmg_bite3 = { "sk_headcrab2_dmg_bite3", "0" };
 
 // Hgrunt 
 cvar_t	sk_hgrunt_health1 = {"sk_hgrunt_health1","0"};
@@ -164,6 +181,125 @@ cvar_t	sk_hgrunt_pellets3 = {"sk_hgrunt_pellets3","0"};
 cvar_t	sk_hgrunt_gspeed1 = {"sk_hgrunt_gspeed1","0"};
 cvar_t	sk_hgrunt_gspeed2 = {"sk_hgrunt_gspeed2","0"};
 cvar_t	sk_hgrunt_gspeed3 = {"sk_hgrunt_gspeed3","0"};
+
+// Space?
+cvar_t sk_space_health1 = { "sk_space_health1", "0" };
+cvar_t sk_space_health2 = { "sk_space_health2", "0" };
+cvar_t sk_space_health3 = { "sk_space_health3", "0" };
+
+cvar_t sk_space_kick1 = { "sk_space_kick1", "0" };
+cvar_t sk_space_kick2 = { "sk_space_kick2", "0" };
+cvar_t sk_space_kick3 = { "sk_space_kick3", "0" };
+
+cvar_t sk_space_pellets1 = { "sk_space_pellets1", "0" };
+cvar_t sk_space_pellets2 = { "sk_space_pellets2", "0" };
+cvar_t sk_space_pellets3 = { "sk_space_pellets3", "0" };
+
+cvar_t sk_space_gspeed1 = { "sk_space_gspeed1", "0" };
+cvar_t sk_space_gspeed2 = { "sk_space_gspeed2", "0" };
+cvar_t sk_space_gspeed3 = { "sk_space_gspeed3", "0" };
+
+// Boss?
+cvar_t sk_boss_health1 = { "sk_boss_health1", "0" };
+cvar_t sk_boss_health2 = { "sk_boss_health2", "0" };
+cvar_t sk_boss_health3 = { "sk_boss_health3", "0" };
+
+cvar_t sk_boss_kick1 = { "sk_boss_kick1", "0" };
+cvar_t sk_boss_kick2 = { "sk_boss_kick2", "0" };
+cvar_t sk_boss_kick3 = { "sk_boss_kick3", "0" };
+
+cvar_t sk_boss_pellets1 = { "sk_boss_pellets1", "0" };
+cvar_t sk_boss_pellets2 = { "sk_boss_pellets2", "0" };
+cvar_t sk_boss_pellets3 = { "sk_boss_pellets3", "0" };
+
+cvar_t sk_boss_gspeed1 = { "sk_boss_gspeed1", "0" };
+cvar_t sk_boss_gspeed2 = { "sk_boss_gspeed2", "0" };
+cvar_t sk_boss_gspeed3 = { "sk_boss_gspeed3", "0" };
+
+// Alpha?
+cvar_t sk_alpha_health1 = { "sk_alpha_health1", "0" };
+cvar_t sk_alpha_health2 = { "sk_alpha_health2", "0" };
+cvar_t sk_alpha_health3 = { "sk_alpha_health3", "0" };
+
+cvar_t sk_alpha_kick1 = { "sk_alpha_kick1", "0" };
+cvar_t sk_alpha_kick2 = { "sk_alpha_kick2", "0" };
+cvar_t sk_alpha_kick3 = { "sk_alpha_kick3", "0" };
+
+cvar_t sk_alpha_pellets1 = { "sk_alpha_pellets1", "0" };
+cvar_t sk_alpha_pellets2 = { "sk_alpha_pellets2", "0" };
+cvar_t sk_alpha_pellets3 = { "sk_alpha_pellets3", "0" };
+
+cvar_t sk_alpha_gspeed1 = { "sk_alpha_gspeed1", "0" };
+cvar_t sk_alpha_gspeed2 = { "sk_alpha_gspeed2", "0" };
+cvar_t sk_alpha_gspeed3 = { "sk_alpha_gspeed3", "0" };
+
+// Spforce
+cvar_t sk_spforce_health1 = { "sk_spforce_health1", "0" };
+cvar_t sk_spforce_health2 = { "sk_spforce_health2", "0" };
+cvar_t sk_spforce_health3 = { "sk_spforce_health3", "0" };
+
+cvar_t sk_spforce_kick1 = { "sk_spforce_kick1", "0" };
+cvar_t sk_spforce_kick2 = { "sk_spforce_kick2", "0" };
+cvar_t sk_spforce_kick3 = { "sk_spforce_kick3", "0" };
+
+cvar_t sk_spforce_pellets1 = { "sk_spforce_pellets1", "0" };
+cvar_t sk_spforce_pellets2 = { "sk_spforce_pellets2", "0" };
+cvar_t sk_spforce_pellets3 = { "sk_spforce_pellets3", "0" };
+
+cvar_t sk_spforce_gspeed1 = { "sk_spforce_gspeed1", "0" };
+cvar_t sk_spforce_gspeed2 = { "sk_spforce_gspeed2", "0" };
+cvar_t sk_spforce_gspeed3 = { "sk_spforce_gspeed3", "0" };
+
+// Agent
+cvar_t sk_agent_health1 = { "sk_agent_health1", "0" };
+cvar_t sk_agent_health2 = { "sk_agent_health2", "0" };
+cvar_t sk_agent_health3 = { "sk_agent_health3", "0" };
+
+cvar_t sk_agent_kick1 = { "sk_agent_kick1", "0" };
+cvar_t sk_agent_kick2 = { "sk_agent_kick2", "0" };
+cvar_t sk_agent_kick3 = { "sk_agent_kick3", "0" };
+
+cvar_t sk_agent_pellets1 = { "sk_agent_pellets1", "0" };
+cvar_t sk_agent_pellets2 = { "sk_agent_pellets2", "0" };
+cvar_t sk_agent_pellets3 = { "sk_agent_pellets3", "0" };
+
+cvar_t sk_agent_gspeed1 = { "sk_agent_gspeed1", "0" };
+cvar_t sk_agent_gspeed2 = { "sk_agent_gspeed2", "0" };
+cvar_t sk_agent_gspeed3 = { "sk_agent_gspeed3", "0" };
+
+// Robot?
+cvar_t sk_robot_health1 = { "sk_robot_health1", "0" };
+cvar_t sk_robot_health2 = { "sk_robot_health2", "0" };
+cvar_t sk_robot_health3 = { "sk_robot_health3", "0" };
+
+cvar_t sk_robot_kick1 = { "sk_robot_kick1", "0" };
+cvar_t sk_robot_kick2 = { "sk_robot_kick2", "0" };
+cvar_t sk_robot_kick3 = { "sk_robot_kick3", "0" };
+
+cvar_t sk_robot_pellets1 = { "sk_robot_pellets1", "0" };
+cvar_t sk_robot_pellets2 = { "sk_robot_pellets2", "0" };
+cvar_t sk_robot_pellets3 = { "sk_robot_pellets3", "0" };
+
+cvar_t sk_robot_gspeed1 = { "sk_robot_gspeed1", "0" };
+cvar_t sk_robot_gspeed2 = { "sk_robot_gspeed2", "0" };
+cvar_t sk_robot_gspeed3 = { "sk_robot_gspeed3", "0" };
+
+// Massn
+cvar_t sk_massn_health1 = { "sk_massn_health1", "0" };
+cvar_t sk_massn_health2 = { "sk_massn_health2", "0" };
+cvar_t sk_massn_health3 = { "sk_massn_health3", "0" };
+
+cvar_t sk_massn_kick1 = { "sk_massn_kick1", "0" };
+cvar_t sk_massn_kick2 = { "sk_massn_kick2", "0" };
+cvar_t sk_massn_kick3 = { "sk_massn_kick3", "0" };
+
+cvar_t sk_massn_pellets1 = { "sk_massn_pellets1", "0" };
+cvar_t sk_massn_pellets2 = { "sk_massn_pellets2", "0" };
+cvar_t sk_massn_pellets3 = { "sk_massn_pellets3", "0" };
+
+cvar_t sk_massn_gspeed1 = { "sk_massn_gspeed1", "0" };
+cvar_t sk_massn_gspeed2 = { "sk_massn_gspeed2", "0" };
+cvar_t sk_massn_gspeed3 = { "sk_massn_gspeed3", "0" };
 
 // Houndeye
 cvar_t	sk_houndeye_health1 = {"sk_houndeye_health1","0"};
@@ -192,6 +328,22 @@ cvar_t	sk_islave_dmg_zap1 = {"sk_islave_dmg_zap1","0"};
 cvar_t	sk_islave_dmg_zap2 = {"sk_islave_dmg_zap2","0"};
 cvar_t	sk_islave_dmg_zap3 = {"sk_islave_dmg_zap3","0"};
 
+// ISlave2
+cvar_t sk_islave2_health1 = { "sk_islave2_health1", "0" };
+cvar_t sk_islave2_health2 = { "sk_islave2_health2", "0" };
+cvar_t sk_islave2_health3 = { "sk_islave2_health3", "0" };
+
+cvar_t sk_islave2_dmg_claw1 = { "sk_islave2_dmg_claw1", "0" };
+cvar_t sk_islave2_dmg_claw2 = { "sk_islave2_dmg_claw2", "0" };
+cvar_t sk_islave2_dmg_claw3 = { "sk_islave2_dmg_claw3", "0" };
+
+cvar_t sk_islave2_dmg_clawrake1 = { "sk_islave2_dmg_clawrake1", "0" };
+cvar_t sk_islave2_dmg_clawrake2 = { "sk_islave2_dmg_clawrake2", "0" };
+cvar_t sk_islave2_dmg_clawrake3 = { "sk_islave2_dmg_clawrake3", "0" };
+
+cvar_t sk_islave2_dmg_zap1 = { "sk_islave2_dmg_zap1", "0" };
+cvar_t sk_islave2_dmg_zap2 = { "sk_islave2_dmg_zap2", "0" };
+cvar_t sk_islave2_dmg_zap3 = { "sk_islave2_dmg_zap3", "0" };
 
 // Icthyosaur
 cvar_t	sk_ichthyosaur_health1	= {"sk_ichthyosaur_health1","0"};
@@ -291,10 +443,68 @@ cvar_t	sk_plr_crowbar1 = {"sk_plr_crowbar1","0"};
 cvar_t	sk_plr_crowbar2 = {"sk_plr_crowbar2","0"};
 cvar_t	sk_plr_crowbar3 = {"sk_plr_crowbar3","0"};
 
+cvar_t sk_plr_knife1 = { "sk_plr_knife1", "0" };
+cvar_t sk_plr_knife2 = { "sk_plr_knife2", "0" };
+cvar_t sk_plr_knife3 = { "sk_plr_knife3", "0" };
+
+cvar_t sk_plr_pipe1 = { "sk_plr_pipe1", "0" };
+cvar_t sk_plr_pipe2 = { "sk_plr_pipe2", "0" };
+cvar_t sk_plr_pipe3 = { "sk_plr_pipe3", "0" };
+
+cvar_t sk_plr_nuclear1 = { "sk_plr_nuclear1", "0" };
+cvar_t sk_plr_nuclear2 = { "sk_plr_nuclear2", "0" };
+cvar_t sk_plr_nuclear3 = { "sk_plr_nuclear3", "0" };
+
+cvar_t sk_otis_health1 = { "sk_otis_health1", "0" };
+cvar_t sk_otis_health2 = { "sk_otis_health2", "0" };
+cvar_t sk_otis_health3 = { "sk_otis_health3", "0" };
+
 // Glock Round
 cvar_t	sk_plr_9mm_bullet1 = {"sk_plr_9mm_bullet1","0"};
 cvar_t	sk_plr_9mm_bullet2 = {"sk_plr_9mm_bullet2","0"};
 cvar_t	sk_plr_9mm_bullet3 = {"sk_plr_9mm_bullet3","0"};
+
+cvar_t sk_plr_deagle1 = { "sk_plr_deagle1", "0" };
+cvar_t sk_plr_deagle2 = { "sk_plr_deagle2", "0" };
+cvar_t sk_plr_deagle3 = { "sk_plr_deagle3", "0" };
+
+cvar_t sk_plr_m411 = { "sk_plr_m411", "0" };
+cvar_t sk_plr_m412 = { "sk_plr_m412", "0" };
+cvar_t sk_plr_m413 = { "sk_plr_m413", "0" };
+
+cvar_t sk_plr_p2261 = { "sk_plr_p2261", "0" };
+cvar_t sk_plr_p2262 = { "sk_plr_p2262", "0" };
+cvar_t sk_plr_p2263 = { "sk_plr_p2263", "0" };
+
+cvar_t sk_plr_ksg121 = { "sk_plr_ksg121", "0" };
+cvar_t sk_plr_ksg122 = { "sk_plr_ksg122", "0" };
+cvar_t sk_plr_ksg123 = { "sk_plr_ksg123", "0" };
+
+// Flamethrower
+cvar_t sk_plr_flamethrower1 = { "sk_plr_flamethrower1", "0" };
+cvar_t sk_plr_flamethrower2 = { "sk_plr_flamethrower2", "0" };
+cvar_t sk_plr_flamethrower3 = { "sk_plr_flamethrower3", "0" };
+
+cvar_t sk_plr_beretta1 = { "sk_plr_beretta1", "0" };
+cvar_t sk_plr_beretta2 = { "sk_plr_beretta2", "0" };
+cvar_t sk_plr_beretta3 = { "sk_plr_beretta3", "0" };
+
+// Db
+cvar_t sk_plr_db1 = { "sk_plr_db1", "0" };
+cvar_t sk_plr_db2 = { "sk_plr_db2", "0" };
+cvar_t sk_plr_db3 = { "sk_plr_db3", "0" };
+
+cvar_t sk_plr_m10141 = { "sk_plr_m10141", "0" };
+cvar_t sk_plr_m10142 = { "sk_plr_m10142", "0" };
+cvar_t sk_plr_m10143 = { "sk_plr_m10143", "0" };
+
+cvar_t sk_plr_fnfal1 = { "sk_plr_fnfal1", "0" };
+cvar_t sk_plr_fnfal2 = { "sk_plr_fnfal2", "0" };
+cvar_t sk_plr_fnfal3 = { "sk_plr_fnfal3", "0" };
+
+cvar_t sk_plr_mp71 = { "sk_plr_mp71", "0" };
+cvar_t sk_plr_mp72 = { "sk_plr_mp72", "0" };
+cvar_t sk_plr_mp73 = { "sk_plr_mp73", "0" };
 
 // 357 Round
 cvar_t	sk_plr_357_bullet1 = {"sk_plr_357_bullet1","0"};
@@ -306,6 +516,40 @@ cvar_t	sk_plr_9mmAR_bullet1 = {"sk_plr_9mmAR_bullet1","0"};
 cvar_t	sk_plr_9mmAR_bullet2 = {"sk_plr_9mmAR_bullet2","0"};
 cvar_t	sk_plr_9mmAR_bullet3 = {"sk_plr_9mmAR_bullet3","0"};
 
+// AK47
+cvar_t sk_plr_ak471 = { "sk_plr_ak471", "0" };
+cvar_t sk_plr_ak472 = { "sk_plr_ak472", "0" };
+cvar_t sk_plr_ak473 = { "sk_plr_ak473", "0" };
+
+cvar_t sk_plr_p9041 = { "sk_plr_p9041", "0" };
+cvar_t sk_plr_p9042 = { "sk_plr_p9042", "0" };
+cvar_t sk_plr_p9043 = { "sk_plr_p9043", "0" };
+
+cvar_t sk_plr_colt451 = { "sk_plr_colt451", "0" };
+cvar_t sk_plr_colt452 = { "sk_plr_colt452", "0" };
+cvar_t sk_plr_colt453 = { "sk_plr_colt453", "0" };
+
+cvar_t sk_plr_autosniper1 = { "sk_plr_autosniper1", "0" };
+cvar_t sk_plr_autosniper2 = { "sk_plr_autosniper2", "0" };
+cvar_t sk_plr_autosniper3 = { "sk_plr_autosniper3", "0" };
+
+cvar_t sk_plr_d501 = { "sk_plr_d501", "0" };
+cvar_t sk_plr_d502 = { "sk_plr_d502", "0" };
+cvar_t sk_plr_d503 = { "sk_plr_d503", "0" };
+
+cvar_t sk_plr_chaingun1 = { "sk_plr_chaingun1", "0" };
+cvar_t sk_plr_chaingun2 = { "sk_plr_chaingun2", "0" };
+cvar_t sk_plr_chaingun3 = { "sk_plr_chaingun3", "0" };
+
+// MP5A3
+cvar_t sk_plr_mp5a31 = { "sk_plr_mp5a31", "0" };
+cvar_t sk_plr_mp5a32 = { "sk_plr_mp5a32", "0" };
+cvar_t sk_plr_mp5a33 = { "sk_plr_mp5a33", "0" };
+
+// MP5A3
+cvar_t sk_plr_piece1 = { "sk_plr_piece1", "0" };
+cvar_t sk_plr_piece2 = { "sk_plr_piece2", "0" };
+cvar_t sk_plr_piece3 = { "sk_plr_piece3", "0" };
 
 // M203 grenade
 cvar_t	sk_plr_9mmAR_grenade1 = {"sk_plr_9mmAR_grenade1","0"};
@@ -382,6 +626,41 @@ cvar_t	sk_9mm_bullet1 = {"sk_9mm_bullet1","0"};
 cvar_t	sk_9mm_bullet2 = {"sk_9mm_bullet2","0"};
 cvar_t	sk_9mm_bullet3 = {"sk_9mm_bullet3","0"};
 
+cvar_t sk_m41_bullet1 = { "sk_m41_bullet1", "0" };
+cvar_t sk_m41_bullet2 = { "sk_m41_bullet2", "0" };
+cvar_t sk_m41_bullet3 = { "sk_m41_bullet3", "0" };
+
+cvar_t sk_p904_bullet1 = { "sk_p904_bullet1", "0" };
+cvar_t sk_p904_bullet2 = { "sk_p904_bullet2", "0" };
+cvar_t sk_p904_bullet3 = { "sk_p904_bullet3", "0" };
+
+cvar_t sk_akm_bullet1 = { "sk_akm_bullet1", "0" };
+cvar_t sk_akm_bullet2 = { "sk_akm_bullet2", "0" };
+cvar_t sk_akm_bullet3 = { "sk_akm_bullet3", "0" };
+
+cvar_t sk_as_bullet1 = { "sk_as_bullet1", "0" };
+cvar_t sk_as_bullet2 = { "sk_as_bullet2", "0" };
+cvar_t sk_as_bullet3 = { "sk_as_bullet3", "0" };
+
+cvar_t sk_357_bullet1 = { "sk_357_bullet1", "0" };
+cvar_t sk_357_bullet2 = { "sk_357_bullet2", "0" };
+cvar_t sk_357_bullet3 = { "sk_357_bullet3", "0" };
+
+cvar_t sk_d50_bullet1 = { "sk_d50_bullet1", "0" };
+cvar_t sk_d50_bullet2 = { "sk_d50_bullet2", "0" };
+cvar_t sk_d50_bullet3 = { "sk_d50_bullet3", "0" };
+
+cvar_t sk_23_bullet1 = { "sk_23_bullet1", "0" };
+cvar_t sk_23_bullet2 = { "sk_23_bullet2", "0" };
+cvar_t sk_23_bullet3 = { "sk_23_bullet3", "0" };
+
+cvar_t sk_fnfal_bullet1 = { "sk_fnfal_bullet1", "0" };
+cvar_t sk_fnfal_bullet2 = { "sk_fnfal_bullet2", "0" };
+cvar_t sk_fnfal_bullet3 = { "sk_fnfal_bullet3", "0" };
+
+cvar_t sk_cg_bullet1 = { "sk_cg_bullet1", "0" };
+cvar_t sk_cg_bullet2 = { "sk_cg_bullet2", "0" };
+cvar_t sk_cg_bullet3 = { "sk_cg_bullet3", "0" };
 
 // HORNET
 cvar_t	sk_hornet_dmg1 = {"sk_hornet_dmg1","0"};
@@ -522,6 +801,11 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_barney_health2 );// {"sk_barney_health2","0"};
 	CVAR_REGISTER( &sk_barney_health3 );// {"sk_barney_health3","0"};
 
+	// Anime?
+	CVAR_REGISTER( &sk_anime_health1 ); // {"sk_barney_health1","0"};
+	CVAR_REGISTER( &sk_anime_health2 ); // {"sk_barney_health2","0"};
+	CVAR_REGISTER( &sk_anime_health3 ); // {"sk_barney_health3","0"};
+
 	// Bullsquid
 	CVAR_REGISTER( &sk_bullsquid_health1 );// {"sk_bullsquid_health1","0"};
 	CVAR_REGISTER( &sk_bullsquid_health2 );// {"sk_bullsquid_health2","0"};
@@ -577,6 +861,11 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_hassassin_health2 );// {"sk_hassassin_health2","0"};
 	CVAR_REGISTER( &sk_hassassin_health3 );// {"sk_hassassin_health3","0"};
 
+	// Anime?
+	CVAR_REGISTER( &sk_super_health1 ); // {"sk_super_health1","0"};
+	CVAR_REGISTER( &sk_super_health2 ); // {"sk_super_health2","0"};
+	CVAR_REGISTER( &sk_super_health3 ); // {"sk_super_health3","0"};
+
 	// Headcrab
 	CVAR_REGISTER( &sk_headcrab_health1 );// {"sk_headcrab_health1","0"};
 	CVAR_REGISTER( &sk_headcrab_health2 );// {"sk_headcrab_health2","0"};
@@ -585,6 +874,15 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_headcrab_dmg_bite1 );// {"sk_headcrab_dmg_bite1","0"};
 	CVAR_REGISTER( &sk_headcrab_dmg_bite2 );// {"sk_headcrab_dmg_bite2","0"};
 	CVAR_REGISTER( &sk_headcrab_dmg_bite3 );// {"sk_headcrab_dmg_bite3","0"};
+
+	// Headcrab2
+	CVAR_REGISTER( &sk_headcrab2_health1 ); // {"sk_headcrab_health1","0"};
+	CVAR_REGISTER( &sk_headcrab2_health2 ); // {"sk_headcrab_health2","0"};
+	CVAR_REGISTER( &sk_headcrab2_health3 ); // {"sk_headcrab_health3","0"};
+
+	CVAR_REGISTER( &sk_headcrab2_dmg_bite1 ); // {"sk_headcrab_dmg_bite1","0"};
+	CVAR_REGISTER( &sk_headcrab2_dmg_bite2 ); // {"sk_headcrab_dmg_bite2","0"};
+	CVAR_REGISTER( &sk_headcrab2_dmg_bite3 ); // {"sk_headcrab_dmg_bite3","0"};
 
 	// Hgrunt
 	CVAR_REGISTER( &sk_hgrunt_health1 );// {"sk_hgrunt_health1","0"};
@@ -602,6 +900,125 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_hgrunt_gspeed1 );
 	CVAR_REGISTER( &sk_hgrunt_gspeed2 );
 	CVAR_REGISTER( &sk_hgrunt_gspeed3 );
+
+	// Space?
+	CVAR_REGISTER( &sk_space_health1 ); // {"sk_space_health1","0"};
+	CVAR_REGISTER( &sk_space_health2 ); // {"sk_space_health2","0"};
+	CVAR_REGISTER( &sk_space_health3 ); // {"sk_space_health3","0"};
+
+	CVAR_REGISTER( &sk_space_kick1 ); // {"sk_space_kick1","0"};
+	CVAR_REGISTER( &sk_space_kick2 ); // {"sk_space_kick2","0"};
+	CVAR_REGISTER( &sk_space_kick3 ); // {"sk_space_kick3","0"};
+
+	CVAR_REGISTER( &sk_space_pellets1 );
+	CVAR_REGISTER( &sk_space_pellets2 );
+	CVAR_REGISTER( &sk_space_pellets3 );
+
+	CVAR_REGISTER( &sk_space_gspeed1 );
+	CVAR_REGISTER( &sk_space_gspeed2 );
+	CVAR_REGISTER( &sk_space_gspeed3 );
+
+	// Boss?
+	CVAR_REGISTER( &sk_boss_health1 ); // {"sk_boss_health1","0"};
+	CVAR_REGISTER( &sk_boss_health2 ); // {"sk_boss_health2","0"};
+	CVAR_REGISTER( &sk_boss_health3 ); // {"sk_boss_health3","0"};
+
+	CVAR_REGISTER( &sk_boss_kick1 ); // {"sk_boss_kick1","0"};
+	CVAR_REGISTER( &sk_boss_kick2 ); // {"sk_boss_kick2","0"};
+	CVAR_REGISTER( &sk_boss_kick3 ); // {"sk_boss_kick3","0"};
+
+	CVAR_REGISTER( &sk_boss_pellets1 );
+	CVAR_REGISTER( &sk_boss_pellets2 );
+	CVAR_REGISTER( &sk_boss_pellets3 );
+
+	CVAR_REGISTER( &sk_boss_gspeed1 );
+	CVAR_REGISTER( &sk_boss_gspeed2 );
+	CVAR_REGISTER( &sk_boss_gspeed3 );
+
+	// Alpha?
+	CVAR_REGISTER( &sk_alpha_health1 ); // {"sk_alpha_health1","0"};
+	CVAR_REGISTER( &sk_alpha_health2 ); // {"sk_alpha_health2","0"};
+	CVAR_REGISTER( &sk_alpha_health3 ); // {"sk_alpha_health3","0"};
+
+	CVAR_REGISTER( &sk_alpha_kick1 ); // {"sk_alpha_kick1","0"};
+	CVAR_REGISTER( &sk_alpha_kick2 ); // {"sk_alpha_kick2","0"};
+	CVAR_REGISTER( &sk_alpha_kick3 ); // {"sk_alpha_kick3","0"};
+
+	CVAR_REGISTER( &sk_alpha_pellets1 );
+	CVAR_REGISTER( &sk_alpha_pellets2 );
+	CVAR_REGISTER( &sk_alpha_pellets3 );
+
+	CVAR_REGISTER( &sk_alpha_gspeed1 );
+	CVAR_REGISTER( &sk_alpha_gspeed2 );
+	CVAR_REGISTER( &sk_alpha_gspeed3 );
+
+	// Spforce
+	CVAR_REGISTER( &sk_spforce_health1 ); // {"sk_spforce_health1","0"};
+	CVAR_REGISTER( &sk_spforce_health2 ); // {"sk_spforce_health2","0"};
+	CVAR_REGISTER( &sk_spforce_health3 ); // {"sk_spforce_health3","0"};
+
+	CVAR_REGISTER( &sk_spforce_kick1 ); // {"sk_spforce_kick1","0"};
+	CVAR_REGISTER( &sk_spforce_kick2 ); // {"sk_spforce_kick2","0"};
+	CVAR_REGISTER( &sk_spforce_kick3 ); // {"sk_spforce_kick3","0"};
+
+	CVAR_REGISTER( &sk_spforce_pellets1 );
+	CVAR_REGISTER( &sk_spforce_pellets2 );
+	CVAR_REGISTER( &sk_spforce_pellets3 );
+
+	CVAR_REGISTER( &sk_spforce_gspeed1 );
+	CVAR_REGISTER( &sk_spforce_gspeed2 );
+	CVAR_REGISTER( &sk_spforce_gspeed3 );
+
+	// Agent
+	CVAR_REGISTER( &sk_agent_health1 ); // {"sk_agent_health1","0"};
+	CVAR_REGISTER( &sk_agent_health2 ); // {"sk_agent_health2","0"};
+	CVAR_REGISTER( &sk_agent_health3 ); // {"sk_agent_health3","0"};
+
+	CVAR_REGISTER( &sk_agent_kick1 ); // {"sk_agent_kick1","0"};
+	CVAR_REGISTER( &sk_agent_kick2 ); // {"sk_agent_kick2","0"};
+	CVAR_REGISTER( &sk_agent_kick3 ); // {"sk_agent_kick3","0"};
+
+	CVAR_REGISTER( &sk_agent_pellets1 );
+	CVAR_REGISTER( &sk_agent_pellets2 );
+	CVAR_REGISTER( &sk_agent_pellets3 );
+
+	CVAR_REGISTER( &sk_agent_gspeed1 );
+	CVAR_REGISTER( &sk_agent_gspeed2 );
+	CVAR_REGISTER( &sk_agent_gspeed3 );
+
+	// Robot?
+	CVAR_REGISTER( &sk_robot_health1 ); // {"sk_robot_health1","0"};
+	CVAR_REGISTER( &sk_robot_health2 ); // {"sk_robot_health2","0"};
+	CVAR_REGISTER( &sk_robot_health3 ); // {"sk_robot_health3","0"};
+
+	CVAR_REGISTER( &sk_robot_kick1 ); // {"sk_robot_kick1","0"};
+	CVAR_REGISTER( &sk_robot_kick2 ); // {"sk_robot_kick2","0"};
+	CVAR_REGISTER( &sk_robot_kick3 ); // {"sk_robot_kick3","0"};
+
+	CVAR_REGISTER( &sk_robot_pellets1 );
+	CVAR_REGISTER( &sk_robot_pellets2 );
+	CVAR_REGISTER( &sk_robot_pellets3 );
+
+	CVAR_REGISTER( &sk_robot_gspeed1 );
+	CVAR_REGISTER( &sk_robot_gspeed2 );
+	CVAR_REGISTER( &sk_robot_gspeed3 );
+
+	// Massn
+	CVAR_REGISTER( &sk_massn_health1 ); // {"sk_massn_health1","0"};
+	CVAR_REGISTER( &sk_massn_health2 ); // {"sk_massn_health2","0"};
+	CVAR_REGISTER( &sk_massn_health3 ); // {"sk_massn_health3","0"};
+
+	CVAR_REGISTER( &sk_massn_kick1 ); // {"sk_massn_kick1","0"};
+	CVAR_REGISTER( &sk_massn_kick2 ); // {"sk_massn_kick2","0"};
+	CVAR_REGISTER( &sk_massn_kick3 ); // {"sk_massn_kick3","0"};
+
+	CVAR_REGISTER( &sk_massn_pellets1 );
+	CVAR_REGISTER( &sk_massn_pellets2 );
+	CVAR_REGISTER( &sk_massn_pellets3 );
+
+	CVAR_REGISTER( &sk_massn_gspeed1 );
+	CVAR_REGISTER( &sk_massn_gspeed2 );
+	CVAR_REGISTER( &sk_massn_gspeed3 );
 
 	// Houndeye
 	CVAR_REGISTER( &sk_houndeye_health1 );// {"sk_houndeye_health1","0"};
@@ -628,6 +1045,23 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_islave_dmg_zap1 );// {"sk_islave_dmg_zap1","0"};
 	CVAR_REGISTER( &sk_islave_dmg_zap2 );// {"sk_islave_dmg_zap2","0"};
 	CVAR_REGISTER( &sk_islave_dmg_zap3 );// {"sk_islave_dmg_zap3","0"};
+
+	// ISlave2
+	CVAR_REGISTER( &sk_islave2_health1 ); // {"sk_islave_health1","0"};
+	CVAR_REGISTER( &sk_islave2_health2 ); // {"sk_islave_health2","0"};
+	CVAR_REGISTER( &sk_islave2_health3 ); // {"sk_islave_health3","0"};
+
+	CVAR_REGISTER( &sk_islave2_dmg_claw1 ); // {"sk_islave_dmg_claw1","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_claw2 ); // {"sk_islave_dmg_claw2","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_claw3 ); // {"sk_islave_dmg_claw3","0"};
+
+	CVAR_REGISTER( &sk_islave2_dmg_clawrake1 ); // {"sk_islave_dmg_clawrake1","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_clawrake2 ); // {"sk_islave_dmg_clawrake2","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_clawrake3 ); // {"sk_islave_dmg_clawrake3","0"};
+
+	CVAR_REGISTER( &sk_islave2_dmg_zap1 ); // {"sk_islave_dmg_zap1","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_zap2 ); // {"sk_islave_dmg_zap2","0"};
+	CVAR_REGISTER( &sk_islave2_dmg_zap3 ); // {"sk_islave_dmg_zap3","0"};
 
 	// Icthyosaur
 	CVAR_REGISTER( &sk_ichthyosaur_health1 );// {"sk_ichthyosaur_health1","0"};
@@ -727,6 +1161,43 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_plr_crowbar2 );// {"sk_plr_crowbar2","0"};
 	CVAR_REGISTER( &sk_plr_crowbar3 );// {"sk_plr_crowbar3","0"};
 
+	// Knife
+	CVAR_REGISTER( &sk_plr_knife1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_knife2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_knife3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_pipe1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_pipe2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_pipe3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_deagle1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_deagle2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_deagle3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_m411 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_m412 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_m413 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_p2261 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_p2262 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_p2263 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_piece1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_piece2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_piece3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_beretta1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_beretta2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_beretta3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_otis_health1 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_otis_health2 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_otis_health3 ); // {"sk_plr_crowbar3","0"};
+
+	CVAR_REGISTER( &sk_plr_ksg121 ); // {"sk_plr_crowbar1","0"};
+	CVAR_REGISTER( &sk_plr_ksg122 ); // {"sk_plr_crowbar2","0"};
+	CVAR_REGISTER( &sk_plr_ksg123 ); // {"sk_plr_crowbar3","0"};
+
 	// Glock Round
 	CVAR_REGISTER( &sk_plr_9mm_bullet1 );// {"sk_plr_9mm_bullet1","0"};
 	CVAR_REGISTER( &sk_plr_9mm_bullet2 );// {"sk_plr_9mm_bullet2","0"};
@@ -737,10 +1208,62 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_plr_357_bullet2 );// {"sk_plr_357_bullet2","0"};
 	CVAR_REGISTER( &sk_plr_357_bullet3 );// {"sk_plr_357_bullet3","0"};
 
+	//Flamethrower
+	CVAR_REGISTER( &sk_plr_flamethrower1 );
+	CVAR_REGISTER( &sk_plr_flamethrower2 );
+	CVAR_REGISTER( &sk_plr_flamethrower3 );
+
 	// MP5 Round
 	CVAR_REGISTER( &sk_plr_9mmAR_bullet1 );// {"sk_plr_9mmAR_bullet1","0"};
 	CVAR_REGISTER( &sk_plr_9mmAR_bullet2 );// {"sk_plr_9mmAR_bullet2","0"};
 	CVAR_REGISTER( &sk_plr_9mmAR_bullet3 );// {"sk_plr_9mmAR_bullet3","0"};
+
+	// AK47
+	CVAR_REGISTER( &sk_plr_ak471 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_ak472 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_ak473 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_p9041 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_p9042 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_p9043 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_autosniper1 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_autosniper2 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_autosniper3 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_d501 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_d502 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_d503 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_chaingun1 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_chaingun2 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_chaingun3 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_colt451 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_colt452 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_colt453 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	// MP5A3
+	CVAR_REGISTER( &sk_plr_mp5a31 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_mp5a32 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_mp5a33 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_mp71 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_mp72 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_mp73 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	// DBARREL
+	CVAR_REGISTER( &sk_plr_db1 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_db2 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_db3 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_m10141 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_m10142 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_m10143 ); // {"sk_plr_9mmAR_bullet3","0"};
+
+	CVAR_REGISTER( &sk_plr_fnfal1 ); // {"sk_plr_9mmAR_bullet1","0"};
+	CVAR_REGISTER( &sk_plr_fnfal2 ); // {"sk_plr_9mmAR_bullet2","0"};
+	CVAR_REGISTER( &sk_plr_fnfal3 ); // {"sk_plr_9mmAR_bullet3","0"};
 
 	// M203 grenade
 	CVAR_REGISTER( &sk_plr_9mmAR_grenade1 );// {"sk_plr_9mmAR_grenade1","0"};
@@ -790,6 +1313,10 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_plr_satchel2 );// {"sk_plr_satchel2","0"};
 	CVAR_REGISTER( &sk_plr_satchel3 );// {"sk_plr_satchel3","0"};
 
+	CVAR_REGISTER( &sk_plr_nuclear1 ); // {"sk_plr_satchel1","0"};
+	CVAR_REGISTER( &sk_plr_nuclear2 ); // {"sk_plr_satchel2","0"};
+	CVAR_REGISTER( &sk_plr_nuclear3 ); // {"sk_plr_satchel3","0"};
+
 	// Tripmine
 	CVAR_REGISTER( &sk_plr_tripmine1 );// {"sk_plr_tripmine1","0"};
 	CVAR_REGISTER( &sk_plr_tripmine2 );// {"sk_plr_tripmine2","0"};
@@ -807,6 +1334,42 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_9mm_bullet1 );// {"sk_9mm_bullet1","0"};
 	CVAR_REGISTER( &sk_9mm_bullet2 );// {"sk_9mm_bullet2","0"};
 	CVAR_REGISTER( &sk_9mm_bullet3 );// {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_m41_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_m41_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_m41_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_p904_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_p904_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_p904_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_akm_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_akm_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_akm_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_as_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_as_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_as_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_357_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_357_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_357_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_d50_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_d50_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_d50_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_23_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_23_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_23_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_fnfal_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_fnfal_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_fnfal_bullet3 ); // {"sk_9mm_bullet3","0"};
+
+	CVAR_REGISTER( &sk_cg_bullet1 ); // {"sk_9mm_bullet1","0"};
+	CVAR_REGISTER( &sk_cg_bullet2 ); // {"sk_9mm_bullet2","0"};
+	CVAR_REGISTER( &sk_cg_bullet3 ); // {"sk_9mm_bullet3","0"};
 
 	// HORNET
 	CVAR_REGISTER( &sk_hornet_dmg1 );// {"sk_hornet_dmg1","0"};

@@ -78,7 +78,7 @@ int CGlock::GetItemInfo( ItemInfo *p )
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = GLOCK_MAX_CLIP;
 	p->iSlot = 1;
-	p->iPosition = 0;
+	p->iPosition = 2;
 	p->iFlags = 0;
 	p->iId = m_iId = WEAPON_GLOCK;
 	p->iWeight = GLOCK_WEIGHT;
@@ -106,11 +106,17 @@ BOOL CGlock::Deploy()
 
 void CGlock::SecondaryAttack( void )
 {
-	GlockFire( 0.1f, 0.2f, FALSE );
+	if ( m_iClip == 0 )
+		DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.6f );
+
+	GlockFire( 0.04f, 0.08f, FALSE );
 }
 
 void CGlock::PrimaryAttack( void )
 {
+	if ( m_iClip == 0 )
+		DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.6f );
+
 	GlockFire( 0.01f, 0.3f, TRUE );
 }
 
@@ -120,6 +126,7 @@ void CGlock::GlockFire( float flSpread, float flCycleTime, BOOL fUseAutoAim )
 	{
 		if( m_fFireOnEmpty )
 		{
+			DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.5f );
 			PlayEmptySound();
 			m_flNextPrimaryAttack = GetNextAttackDelay( 0.2f );
 		}
@@ -186,14 +193,12 @@ void CGlock::Reload( void )
 
 	int iResult;
 
-	if( m_iClip == 0 )
-		iResult = DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.5f );
-	else
-		iResult = DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD_NOT_EMPTY, 1.5f );
+	if ( m_iClip < GLOCK_MAX_CLIP )
+		iResult = DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.6f );
 
 	if( iResult )
 	{
-		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10.0f, 15.0f );
 	}
 }
 
@@ -257,5 +262,31 @@ class CGlockAmmo : public CBasePlayerAmmo
 	}
 };
 
+class CBerettaAmmo : public CBasePlayerAmmo
+{
+	void Spawn( void )
+	{
+		Precache();
+		SET_MODEL( ENT( pev ), "models/w_ber_clip.mdl" );
+		CBasePlayerAmmo::Spawn();
+	}
+	
+	void Precache( void )
+	{
+		PRECACHE_MODEL( "models/w_ber_clip.mdl" );
+		PRECACHE_SOUND( "items/9mmclip1.wav" );
+	}
+
+	BOOL AddAmmo( CBaseEntity *pOther )
+	{
+		if ( pOther->GiveAmmo( 15, "9mm", _9MM_MAX_CARRY ) != -1 )
+		{
+			EMIT_SOUND( ENT( pev ), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM );
+			return TRUE;
+		}
+		return FALSE;
+	}
+};
+
 LINK_ENTITY_TO_CLASS( ammo_glockclip, CGlockAmmo )
-LINK_ENTITY_TO_CLASS( ammo_9mmclip, CGlockAmmo )
+LINK_ENTITY_TO_CLASS( ammo_9mmclip, CBerettaAmmo )

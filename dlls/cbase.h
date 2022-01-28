@@ -335,10 +335,15 @@ public:
 
 	//We use this variables to store each ammo count.
 	int ammo_9mm;
+	int ammo_762mm;
+	int ammo_20mm;
+	int ammo_556mm;
 	int ammo_357;
+	int ammo_357mm;
 	int ammo_bolts;
 	int ammo_buckshot;
 	int ammo_rockets;
+	int ammo_fuel;
 	int ammo_uranium;
 	int ammo_hornets;
 	int ammo_argrens;

@@ -215,22 +215,13 @@ void CPython::Reload( void )
 	if( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == PYTHON_MAX_CLIP )
 		return;
 
-	if( m_pPlayer->pev->fov != 0 )
-	{
-		m_fInZoom = FALSE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
-	}
+	int iResult;
 
-	int bUseScope = FALSE;
-#if CLIENT_DLL
-	bUseScope = bIsMultiplayer();
-#else
-	bUseScope = g_pGameRules->IsMultiplayer();
-#endif
-	if( DefaultReload( PYTHON_MAX_CLIP, PYTHON_RELOAD, 2.0f, bUseScope ) )
-	{
-		m_flSoundDelay = 1.5f;
-	}
+	if ( m_iClip < PYTHON_MAX_CLIP )
+		iResult = DefaultReload( PYTHON_MAX_CLIP, PYTHON_RELOAD, 2.6f );
+
+	if ( iResult )
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10.0f, 15.0f );
 }
 
 void CPython::WeaponIdle( void )

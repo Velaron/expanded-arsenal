@@ -89,8 +89,8 @@ void CMP5::Precache( void )
 int CMP5::GetItemInfo( ItemInfo *p )
 {
 	p->pszName = STRING( pev->classname );
-	p->pszAmmo1 = "9mm";
-	p->iMaxAmmo1 = _9MM_MAX_CARRY;
+	p->pszAmmo1 = "556";
+	p->iMaxAmmo1 = _556MM_MAX_CARRY;
 	p->pszAmmo2 = "ARgrenades";
 	p->iMaxAmmo2 = M203_GRENADE_MAX_CARRY;
 	p->iMaxClip = MP5_MAX_CLIP;
@@ -132,6 +132,7 @@ void CMP5::PrimaryAttack()
 
 	if( m_iClip <= 0 )
 	{
+		DefaultReload( MP5_MAX_CLIP, MP5_RELOAD, 2.4f );
 		PlayEmptySound();
 		m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.15f;
 		return;
@@ -157,12 +158,12 @@ void CMP5::PrimaryAttack()
 #endif
 	{
 		// optimized multiplayer. Widened to make it easier to hit a moving player
-		vecDir = m_pPlayer->FireBulletsPlayer( 1, vecSrc, vecAiming, VECTOR_CONE_6DEGREES, 8192, BULLET_PLAYER_MP5, 2, 0, m_pPlayer->pev, m_pPlayer->random_seed );
+		vecDir = m_pPlayer->FireBulletsPlayer( 1, vecSrc, vecAiming, VECTOR_CONE_3DEGREES, 8192, BULLET_PLAYER_MP5, 2, 0, m_pPlayer->pev, m_pPlayer->random_seed );
 	}
 	else
 	{
 		// single player spread
-		vecDir = m_pPlayer->FireBulletsPlayer( 1, vecSrc, vecAiming, VECTOR_CONE_3DEGREES, 8192, BULLET_PLAYER_MP5, 2, 0, m_pPlayer->pev, m_pPlayer->random_seed );
+		vecDir = m_pPlayer->FireBulletsPlayer( 1, vecSrc, vecAiming, VECTOR_CONE_2DEGREES, 8192, BULLET_PLAYER_MP5, 2, 0, m_pPlayer->pev, m_pPlayer->random_seed );
 	}
 
 	int flags;
@@ -238,10 +239,16 @@ void CMP5::SecondaryAttack( void )
 
 void CMP5::Reload( void )
 {
-	if( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == MP5_MAX_CLIP )
+	if ( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == MP5_MAX_CLIP )
 		return;
 
-	DefaultReload( MP5_MAX_CLIP, MP5_RELOAD, 1.5f );
+	int iResult;
+
+	if ( m_iClip < MP5_MAX_CLIP )
+		iResult = DefaultReload( MP5_MAX_CLIP, MP5_RELOAD, 1.6f );
+
+	if ( iResult )
+		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10.0f, 15.0f );
 }
 
 void CMP5::WeaponIdle( void )
@@ -275,17 +282,18 @@ class CMP5AmmoClip : public CBasePlayerAmmo
 	void Spawn( void )
 	{
 		Precache();
-		SET_MODEL( ENT( pev ), "models/w_9mmARclip.mdl" );
+		SET_MODEL( ENT( pev ), "models/w_mp5a3clip.mdl" );
 		CBasePlayerAmmo::Spawn();
 	}
 	void Precache( void )
 	{
+		PRECACHE_MODEL( "models/w_mp5a3clip.mdl" );
 		PRECACHE_MODEL( "models/w_9mmARclip.mdl" );
 		PRECACHE_SOUND( "items/9mmclip1.wav" );
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
 	{ 
-		int bResult = ( pOther->GiveAmmo( AMMO_MP5CLIP_GIVE, "9mm", _9MM_MAX_CARRY ) != -1 );
+		int bResult = ( pOther->GiveAmmo( AMMO_MP5CLIP_GIVE, "556", _556MM_MAX_CARRY ) != -1 );
 		if( bResult )
 		{
 			EMIT_SOUND( ENT( pev ), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM );
@@ -295,7 +303,6 @@ class CMP5AmmoClip : public CBasePlayerAmmo
 };
 
 LINK_ENTITY_TO_CLASS( ammo_mp5clip, CMP5AmmoClip )
-LINK_ENTITY_TO_CLASS( ammo_9mmAR, CMP5AmmoClip )
 
 class CMP5Chainammo : public CBasePlayerAmmo
 {

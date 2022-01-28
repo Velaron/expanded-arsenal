@@ -34,30 +34,36 @@ extern DLL_GLOBAL Vector	g_vecAttackDir;
 // Just add more items to the bottom of this array and they will automagically be supported
 // This is done instead of just a classname in the FGD so we can control which entities can
 // be spawned, and still remain fairly flexible
-const char *CBreakable::pSpawnObjects[] =
-{
-	NULL,			// 0
-	"item_battery",		// 1
-	"item_healthkit",	// 2
-	"weapon_9mmhandgun",	// 3
-	"ammo_9mmclip",		// 4
-	"weapon_9mmAR",		// 5
-	"ammo_9mmAR",		// 6
-	"ammo_ARgrenades",	// 7
-	"weapon_shotgun",	// 8
-	"ammo_buckshot",	// 9
-	"weapon_crossbow",	// 10
-	"ammo_crossbow",	// 11
-	"weapon_357",		// 12
-	"ammo_357",		// 13
-	"weapon_rpg",		// 14
-	"ammo_rpgclip",		// 15
-	"ammo_gaussclip",	// 16
-	"weapon_handgrenade",	// 17
-	"weapon_tripmine",	// 18
-	"weapon_satchel",	// 19
-	"weapon_snark",		// 20
-	"weapon_hornetgun",	// 21
+const char *CBreakable::pSpawnObjects[] = {
+	NULL,                // 0
+	"item_battery",      // 1
+	"item_healthkit",    // 2
+	"weapon_9mmhandgun", // 3
+	"ammo_9mmclip",      // 4
+	"weapon_9mmAR",      // 5
+	"ammo_mp5clip",      // 6
+	"ammo_ARgrenades",   // 7
+	"weapon_shotgun",    // 8
+	"ammo_colt45clip",   // 9
+	"weapon_crossbow",   // 10
+	"ammo_crossbow",     // 11
+	"weapon_357",        // 12
+	"ammo_357",          // 13
+	"weapon_rpg",        // 14
+	"ammo_rpgclip",      // 15
+	"ammo_gaussclip",    // 16
+	"ammo_colt45clip",   // 17
+	"weapon_tripmine",   // 18
+	"ammo_ak47clip",     // 19
+	"weapon_snark",      // 20
+	"weapon_hornetgun",  // 21
+	"weapon_knife",      // 22
+	"weapon_ak47",       // 23
+	"weapon_mp5a3",      // 24
+	"weapon_dbarrel",    // 25
+	"weapon_asniper",    // 27
+	"ammo_50cal",        // 28
+	"weapon_fnfal"       // 29
 };
 
 void CBreakable::KeyValue( KeyValueData* pkvd )

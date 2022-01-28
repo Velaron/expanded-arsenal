@@ -292,17 +292,30 @@ void CHGrunt::GibMonster( void )
 		else
 		{
 			pGun = DropItem( "weapon_9mmAR", vecGunPos, vecGunAngles );
-		}
+			if ( pGun )
+			{
+				pGun->pev->velocity = Vector( RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( 200, 300 ) );
+				pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
+			}
 
-		if( pGun )
-		{
-			pGun->pev->velocity = Vector( RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( 200, 300 ) );
-			pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
+			pGun = DropItem( "ammo_glockclip", vecGunPos, vecGunAngles );
+			if ( pGun )
+			{
+				pGun->pev->velocity = Vector( RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( 200, 300 ) );
+				pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
+			}
 		}
 
 		if( FBitSet( pev->weapons, HGRUNT_GRENADELAUNCHER ) )
 		{
 			pGun = DropItem( "ammo_ARgrenades", vecGunPos, vecGunAngles );
+			if ( pGun )
+			{
+				pGun->pev->velocity = Vector( RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( 200, 300 ) );
+				pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
+			}
+
+			pGun = DropItem( "weapon_knife", vecGunPos, vecGunAngles );
 			if ( pGun )
 			{
 				pGun->pev->velocity = Vector( RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( -100, 100 ), RANDOM_FLOAT( 200, 300 ) );
@@ -857,21 +870,23 @@ void CHGrunt::HandleAnimEvent( MonsterEvent_t *pEvent )
 			// switch to body group with no gun.
 			SetBodygroup( GUN_GROUP, GUN_NONE );
 
-			// now spawn a gun.
-			if( FBitSet( pev->weapons, HGRUNT_SHOTGUN ) )
-			{
-				 DropItem( "weapon_shotgun", vecGunPos, vecGunAngles );
-			}
-			else
-			{
-				 DropItem( "weapon_9mmAR", vecGunPos, vecGunAngles );
-			}
+		    // now spawn a gun.
+		    if ( FBitSet( pev->weapons, HGRUNT_SHOTGUN ) )
+		    {
+			    DropItem( "weapon_shotgun", vecGunPos, vecGunAngles );
+		    }
+		    else
+		    {
+			    DropItem( "weapon_9mmAR", vecGunPos, vecGunAngles );
+			    DropItem( "weapon_handgrenade", BodyTarget( pev->origin ), vecGunAngles );
+		    }
 
-			if( FBitSet( pev->weapons, HGRUNT_GRENADELAUNCHER ) )
-			{
-				DropItem( "ammo_ARgrenades", BodyTarget( pev->origin ), vecGunAngles );
-			}
-		}
+		    if ( FBitSet( pev->weapons, HGRUNT_GRENADELAUNCHER ) )
+		    {
+			    DropItem( "ammo_ARgrenades", BodyTarget( pev->origin ), vecGunAngles );
+			    DropItem( "weapon_glock", BodyTarget( pev->origin ), vecGunAngles );
+		    }
+	    }
 			break;
 		case HGRUNT_AE_RELOAD:
 			EMIT_SOUND( ENT( pev ), CHAN_WEAPON, "hgrunt/gr_reload1.wav", 1, ATTN_NORM );

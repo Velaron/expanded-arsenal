@@ -57,6 +57,14 @@ enum
 #define		ASSASSIN_AE_TOSS1	2
 #define		ASSASSIN_AE_JUMP	3
 
+#define ASSASSIN_AE_DROP      4
+#define ASSASSIN_BODY_GUNGONE 5
+#define ASSASSIN_SHOTGUN      ( 1 << 3 )
+#define GUN_GROUP             2
+#define GUN_MP5               0
+#define GUN_SHOTGUN           1
+#define GUN_NONE              2
+
 #define bits_MEMORY_BADJUMP		( bits_MEMORY_CUSTOM1 )
 
 class CHAssassin : public CBaseMonster
@@ -79,6 +87,7 @@ public:
 	void RunAI( void );
 	void RunTask( Task_t *pTask );
 	void DeathSound( void );
+	void GibMonster( void );
 	void IdleSound( void );
 	CUSTOM_SCHEDULES
 
@@ -123,11 +132,41 @@ TYPEDESCRIPTION	CHAssassin::m_SaveData[] =
 
 IMPLEMENT_SAVERESTORE( CHAssassin, CBaseMonster )
 
+void CHAssassin::GibMonster( void )
+{
+	// drop the gun!
+	if ( GetBodygroup( 1 ) != 1 )
+	{
+		Vector vecGunPos;
+		Vector vecGunAngles;
+
+		pev->body = ASSASSIN_BODY_GUNGONE;
+
+		GetAttachment( 0, vecGunPos, vecGunAngles );
+
+		CBaseEntity *pGun = DropItem( "weapon_colt45", vecGunPos, vecGunAngles );
+	}
+
+	CBaseMonster::GibMonster();
+}
+
 //=========================================================
 // DieSound
 //=========================================================
 void CHAssassin::DeathSound( void )
 {
+	// drop the gun!
+	if ( pev->body < ASSASSIN_BODY_GUNGONE )
+	{
+		Vector vecGunPos;
+		Vector vecGunAngles;
+
+		pev->body = ASSASSIN_BODY_GUNGONE;
+
+		GetAttachment( 0, vecGunPos, vecGunAngles );
+		
+		CBaseEntity *pGun = DropItem( "weapon_colt45", vecGunPos, vecGunAngles );
+	}
 }
 
 //=========================================================
@@ -214,10 +253,10 @@ void CHAssassin::Shoot( void )
 	switch( RANDOM_LONG( 0, 1 ) )
 	{
 	case 0:
-		EMIT_SOUND( ENT( pev ), CHAN_WEAPON, "weapons/pl_gun1.wav", RANDOM_FLOAT( 0.6f, 0.8f ), ATTN_NORM );
+		EMIT_SOUND( ENT( pev ), CHAN_WEAPON, "weapons/pl_gun1.wav", RANDOM_FLOAT( 0.9f, 1.0f ), ATTN_NORM );
 		break;
 	case 1:
-		EMIT_SOUND( ENT( pev ), CHAN_WEAPON, "weapons/pl_gun2.wav", RANDOM_FLOAT( 0.6f, 0.8f ), ATTN_NORM );
+		EMIT_SOUND( ENT( pev ), CHAN_WEAPON, "weapons/pl_gun1.wav", RANDOM_FLOAT( 0.9f, 1.0f ), ATTN_NORM );
 		break;
 	}
 
@@ -237,8 +276,29 @@ void CHAssassin::Shoot( void )
 //=========================================================
 void CHAssassin::HandleAnimEvent( MonsterEvent_t *pEvent )
 {
-	switch( pEvent->event )
+	Vector vecGunPos;
+	Vector vecGunAngles;
+
+	switch ( pEvent->event )
 	{
+	case ASSASSIN_AE_DROP:
+		{
+			GetAttachment( 0, vecGunPos, vecGunAngles );
+
+			// switch to body group with no gun.
+			SetBodygroup( GUN_GROUP, GUN_NONE );
+
+			// now spawn a gun.
+			if ( FBitSet( pev->weapons, ASSASSIN_SHOTGUN ) )
+			{
+				DropItem( "weapon_shotgun", vecGunPos, vecGunAngles );
+			}
+			else
+			{
+				DropItem( "weapon_glock", vecGunPos, vecGunAngles );
+			}
+		}
+		break;
 	case ASSASSIN_AE_SHOOT1:
 		Shoot();
 		break;
@@ -246,6 +306,8 @@ void CHAssassin::HandleAnimEvent( MonsterEvent_t *pEvent )
 		{
 			UTIL_MakeVectors( pev->angles );
 			CGrenade::ShootTimed( pev, pev->origin + gpGlobals->v_forward * 34 + Vector( 0, 0, 32 ), m_vecTossVelocity, 2.0 );
+
+			DropItem( "weapon_9mmhandgun", vecGunPos, vecGunAngles );
 
 			m_flNextGrenadeCheck = gpGlobals->time + 6.0f;// wait six seconds before even looking again to see if a grenade can be thrown.
 			m_fThrowGrenade = FALSE;

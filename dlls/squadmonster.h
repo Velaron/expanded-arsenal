@@ -33,6 +33,69 @@
 #define bits_SLOT_HGRUNT_GRENADE2	( 1 << 3 ) 
 #define bits_SLOTS_HGRUNT_GRENADE	( bits_SLOT_HGRUNT_GRENADE1 | bits_SLOT_HGRUNT_GRENADE2 )
 
+// HUMAN GRUNT SLOTS
+#define bits_SLOT_ROBOT_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_ROBOT_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_ROBOT_ENGAGE ( bits_SLOT_ROBOT_ENGAGE1 | bits_SLOT_ROBOT_ENGAGE2 )
+
+#define bits_SLOT_ROBOT_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_ROBOT_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_ROBOT_GRENADE ( bits_SLOT_ROBOT_GRENADE1 | bits_SLOT_ROBOT_GRENADE2 )
+
+// Spforce
+#define bits_SLOT_SPFORCE_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_SPFORCE_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_SPFORCE_ENGAGE ( bits_SLOT_SPFORCE_ENGAGE1 | bits_SLOT_SPFORCE_ENGAGE2 )
+
+#define bits_SLOT_SPFORCE_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_SPFORCE_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_SPFORCE_GRENADE ( bits_SLOT_SPFORCE_GRENADE1 | bits_SLOT_SPFORCE_GRENADE2 )
+
+// Spforce
+#define bits_SLOT_SPACE_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_SPACE_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_SPACE_ENGAGE ( bits_SLOT_SPACE_ENGAGE1 | bits_SLOT_SPACE_ENGAGE2 )
+
+#define bits_SLOT_SPACE_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_SPACE_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_SPACE_GRENADE ( bits_SLOT_SPACE_GRENADE1 | bits_SLOT_SPACE_GRENADE2 )
+
+// Spforce
+#define bits_SLOT_BOSS_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_BOSS_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_BOSS_ENGAGE ( bits_SLOT_BOSS_ENGAGE1 | bits_SLOT_BOSS_ENGAGE2 )
+
+#define bits_SLOT_BOSS_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_BOSS_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_BOSS_GRENADE ( bits_SLOT_BOSS_GRENADE1 | bits_SLOT_BOSS_GRENADE2 )
+
+// Spforce
+#define bits_SLOT_ALPHA_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_ALPHA_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_ALPHA_ENGAGE ( bits_SLOT_ALPHA_ENGAGE1 | bits_SLOT_ALPHA_ENGAGE2 )
+
+#define bits_SLOT_ALPHA_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_ALPHA_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_ALPHA_GRENADE ( bits_SLOT_ALPHA_GRENADE1 | bits_SLOT_ALPHA_GRENADE2 )
+
+// Massn
+#define bits_SLOT_MASSN_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_MASSN_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_MASSN_ENGAGE ( bits_SLOT_MASSN_ENGAGE1 | bits_SLOT_MASSN_ENGAGE2 )
+
+#define bits_SLOT_MASSN_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_MASSN_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_MASSN_GRENADE ( bits_SLOT_MASSN_GRENADE1 | bits_SLOT_MASSN_GRENADE2 )
+
+// Agent
+#define bits_SLOT_AGENT_ENGAGE1 ( 1 << 0 )
+#define bits_SLOT_AGENT_ENGAGE2 ( 1 << 1 )
+#define bits_SLOTS_AGENT_ENGAGE ( bits_SLOT_AGENT_ENGAGE1 | bits_SLOT_AGENT_ENGAGE2 )
+
+#define bits_SLOT_AGENT_GRENADE1 ( 1 << 2 )
+#define bits_SLOT_AGENT_GRENADE2 ( 1 << 3 )
+#define bits_SLOTS_AGENT_GRENADE ( bits_SLOT_AGENT_GRENADE1 | bits_SLOT_AGENT_GRENADE2 )
+
 // ALIEN GRUNT SLOTS
 #define bits_SLOT_AGRUNT_HORNET1	( 1 << 4 )
 #define bits_SLOT_AGRUNT_HORNET2	( 1 << 5 )

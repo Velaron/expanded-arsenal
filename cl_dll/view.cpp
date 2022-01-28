@@ -1328,6 +1328,7 @@ int V_FindViewModelByWeaponModel( int weaponindex )
 		{ "models/p_squeak.mdl",	"models/v_squeak.mdl" },
 		{ "models/p_tripmine.mdl",	"models/v_tripmine.mdl" },
 		{ "models/p_satchel_radio.mdl",	"models/v_satchel_radio.mdl" },
+		{ "models/p_nuclear_radio.mdl",	"models/v_nuclear_radio.mdl"},
 		{ "models/p_satchel.mdl",	"models/v_satchel.mdl" },
 		{ NULL, NULL }
 	};

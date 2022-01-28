@@ -45,6 +45,7 @@ DLL_GLOBAL	short g_sModelIndexWExplosion;// holds the index for the underwater e
 DLL_GLOBAL	short g_sModelIndexBubbles;// holds the index for the bubbles model
 DLL_GLOBAL	short g_sModelIndexBloodDrop;// holds the sprite index for the initial blood
 DLL_GLOBAL	short g_sModelIndexBloodSpray;// holds the sprite index for splattered blood
+DLL_GLOBAL short g_sModelIndexFlame;      // Flamethrower flame
 
 ItemInfo CBasePlayerItem::ItemInfoArray[MAX_WEAPONS];
 AmmoInfo CBasePlayerItem::AmmoInfoArray[MAX_AMMO_SLOTS];
@@ -168,6 +169,7 @@ void DecalGunshot( TraceResult *pTrace, int iBulletType )
 		case BULLET_PLAYER_MP5:
 		case BULLET_MONSTER_MP5:
 		case BULLET_PLAYER_BUCKSHOT:
+		case BULLET_PLAYER_DB:
 		case BULLET_PLAYER_357:
 		default:
 			// smoke and decal
@@ -297,16 +299,70 @@ void W_Precache( void )
 	UTIL_PrecacheOther( "item_suit" );
 	UTIL_PrecacheOther( "item_healthkit" );
 	UTIL_PrecacheOther( "item_battery" );
+	UTIL_PrecacheOther( "item_healthkit" );
+	UTIL_PrecacheOther( "item_healthsup" );
 	UTIL_PrecacheOther( "item_antidote" );
 	UTIL_PrecacheOther( "item_security" );
 	UTIL_PrecacheOther( "item_longjump" );
 
 	// shotgun
 	UTIL_PrecacheOtherWeapon( "weapon_shotgun" );
+	UTIL_PrecacheOtherWeapon( "weapon_p226" );
+	UTIL_PrecacheOther( "ammo_buckshot" );
+	UTIL_PrecacheOther( "ammo_p226" );
+	UTIL_PrecacheOther( "ammo_turret" );
+	
+	// dbarrel
+	UTIL_PrecacheOtherWeapon( "weapon_dbarrel" );
 	UTIL_PrecacheOther( "ammo_buckshot" );
 
 	// crowbar
+	UTIL_PrecacheOtherWeapon( "weapon_ksg12" );
+	UTIL_PrecacheOtherWeapon( "weapon_x23" );
+	UTIL_PrecacheOtherWeapon( "weapon_mac10" );
+	UTIL_PrecacheOtherWeapon( "weapon_p904" );
 	UTIL_PrecacheOtherWeapon( "weapon_crowbar" );
+	UTIL_PrecacheOtherWeapon( "weapon_piece" );
+	
+	// knife
+	UTIL_PrecacheOtherWeapon( "weapon_knife" );
+	
+	UTIL_PrecacheOtherWeapon( "weapon_asniper" );
+	UTIL_PrecacheOtherWeapon( "weapon_colt45" );
+	UTIL_PrecacheOther( "ammo_colt45clip" );
+	
+	UTIL_PrecacheOtherWeapon( "weapon_nuclear" );
+	
+	UTIL_PrecacheOtherWeapon( "weapon_d50" );
+	
+	UTIL_PrecacheOther( "ammo_50cal" );
+	UTIL_PrecacheOther( "ammo_9mmbox" );
+	
+	// knife
+	UTIL_PrecacheOtherWeapon( "weapon_deagle" );
+	
+	UTIL_PrecacheOtherWeapon( "weapon_m1014" );
+	
+	UTIL_PrecacheOtherWeapon( "weapon_pipe" );
+	
+	// knife
+	UTIL_PrecacheOtherWeapon( "weapon_m41" );
+	
+	// Flamethrower
+	UTIL_PrecacheOtherWeapon( "weapon_flamethrower" );
+	UTIL_PrecacheOther( "ammo_fuel" );
+	
+	// knife
+	UTIL_PrecacheOtherWeapon( "weapon_beretta" );
+	UTIL_PrecacheOther( "ammo_9mmclip" );
+	
+	// ak47
+	UTIL_PrecacheOtherWeapon( "weapon_ak47" );
+	UTIL_PrecacheOther( "ammo_762mm" );
+	
+	// mp5a3
+	UTIL_PrecacheOtherWeapon( "weapon_mp5a3" );
+	UTIL_PrecacheOther( "ammo_9mmAR" );
 
 	// glock
 	UTIL_PrecacheOtherWeapon( "weapon_9mmhandgun" );
@@ -314,8 +370,8 @@ void W_Precache( void )
 
 	// mp5
 	UTIL_PrecacheOtherWeapon( "weapon_9mmAR" );
-	UTIL_PrecacheOther( "ammo_9mmAR" );
 	UTIL_PrecacheOther( "ammo_ARgrenades" );
+	UTIL_PrecacheOther( "ammo_556mm" );
 
 	// 9mm ammo box
 	UTIL_PrecacheOther( "ammo_9mmbox" );
@@ -339,12 +395,14 @@ void W_Precache( void )
 
 	// egon
 	UTIL_PrecacheOtherWeapon( "weapon_egon" );
+	UTIL_PrecacheOtherWeapon( "weapon_chaingun" );
 #endif
 	// tripmine
 	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
 #if !OEM_BUILD && !HLDEMO_BUILD
 	// satchel charge
 	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
+	UTIL_PrecacheOtherWeapon( "weapon_fnfal" );
 #endif
 	// hand grenade
 	UTIL_PrecacheOtherWeapon("weapon_handgrenade");
@@ -361,6 +419,7 @@ void W_Precache( void )
 	}
 #endif
 	g_sModelIndexFireball = PRECACHE_MODEL( "sprites/zerogxplode.spr" );// fireball
+	g_sModelIndexFlame = PRECACHE_MODEL( "sprites/flame.spr" );
 	g_sModelIndexWExplosion = PRECACHE_MODEL( "sprites/WXplo1.spr" );// underwater fireball
 	g_sModelIndexSmoke = PRECACHE_MODEL( "sprites/steam1.spr" );// smoke
 	g_sModelIndexBubbles = PRECACHE_MODEL( "sprites/bubble.spr" );//bubbles

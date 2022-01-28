@@ -252,3 +252,64 @@ void CWallHealth::Off( void )
 	else
 		SetThink( &CBaseEntity::SUB_DoNothing );
 }
+
+class CHealthSup : public CItem
+{
+	void Spawn( void );
+	void Precache( void );
+	BOOL MyTouch( CBasePlayer *pPlayer );
+};
+
+LINK_ENTITY_TO_CLASS( item_healthsup, CHealthSup );
+
+void CHealthSup::Precache( void )
+{
+	PRECACHE_MODEL( "models/w_medsup.mdl" );
+	PRECACHE_SOUND( "items/super_heal.wav" );
+}
+
+void CHealthSup::Spawn( void )
+{
+	Precache();
+	SET_MODEL( ENT( pev ), "models/w_medsup.mdl" );
+
+	CItem::Spawn();
+}
+
+BOOL CHealthSup::MyTouch( CBasePlayer *pPlayer )
+{
+	int minushp;
+
+	if ( pPlayer->pev->deadflag != DEAD_NO )
+	{
+		return FALSE;
+	}
+
+	if ( pPlayer->pev->health > 100 )
+
+	{
+		return FALSE;
+	}
+
+	if ( pPlayer->TakeDamage( VARS( eoNullEntity ), VARS( eoNullEntity ), -100, DMG_FALL ) )
+	{
+		MESSAGE_BEGIN( MSG_ONE, gmsgItemPickup, NULL, pPlayer->pev );
+		WRITE_STRING( STRING( pev->classname ) );
+		MESSAGE_END();
+
+		EMIT_SOUND( ENT( pPlayer->pev ), CHAN_ITEM, "items/super_heal.wav", 1, ATTN_NORM );
+
+		if ( g_pGameRules->ItemShouldRespawn( this ) )
+		{
+			Respawn();
+		}
+		else
+		{
+			UTIL_Remove( this );
+		}
+
+		return TRUE;
+	}
+
+	return FALSE;
+}

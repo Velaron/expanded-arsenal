@@ -119,6 +119,7 @@ private:
 };
 
 LINK_ENTITY_TO_CLASS( monster_scientist, CScientist )
+LINK_ENTITY_TO_CLASS( monster_scientist2, CScientist )
 
 TYPEDESCRIPTION	CScientist::m_SaveData[] =
 {
