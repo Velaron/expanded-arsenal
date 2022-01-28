@@ -9,7 +9,7 @@ Expanded Arsenal android port.
 ## Download
 You can download a build at the [Releases](https://github.com/Velaron/expanded-arsenal/releases/tag/continuous) section, or use these links:
 * [Android](https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal.apk)
-* [Linux](https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal_linux.tar.gz) (not recommended, just use the Steam version)
+* [Linux](https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal_linux.tar.gz) (not recommended, just use the original version)
 * [Windows](https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal_win32.zip) (not recommended, same as above)
 
 ## Installation
