@@ -191,7 +191,7 @@ void CGlock::Reload( void )
 	if( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == GLOCK_MAX_CLIP )
 		return;
 
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < GLOCK_MAX_CLIP )
 		iResult = DefaultReload( GLOCK_MAX_CLIP, GLOCK_RELOAD, 1.6f );

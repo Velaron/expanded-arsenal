@@ -175,7 +175,7 @@ void CMP7::PrimaryAttack()
 
 void CMP7::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 45 )
 	{

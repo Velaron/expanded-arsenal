@@ -242,7 +242,7 @@ void CMP5::Reload( void )
 	if ( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == MP5_MAX_CLIP )
 		return;
 
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < MP5_MAX_CLIP )
 		iResult = DefaultReload( MP5_MAX_CLIP, MP5_RELOAD, 1.6f );

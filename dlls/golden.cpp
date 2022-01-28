@@ -212,7 +212,7 @@ void CGolden::PrimaryAttack()
 
 void CGolden::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 6 )
 	{

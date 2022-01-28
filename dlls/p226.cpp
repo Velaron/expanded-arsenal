@@ -175,7 +175,7 @@ void CP226::PrimaryAttack()
 
 void CP226::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 10 )
 	{

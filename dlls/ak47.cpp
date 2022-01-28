@@ -176,7 +176,7 @@ void CAK47::PrimaryAttack()
 
 void CAK47::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 30 )
 	{

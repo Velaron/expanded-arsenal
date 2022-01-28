@@ -241,7 +241,7 @@ void CP904::SecondaryAttack( void )
 
 void CP904::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 20 )
 	{

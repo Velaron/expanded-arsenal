@@ -215,7 +215,7 @@ void CPython::Reload( void )
 	if( m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == PYTHON_MAX_CLIP )
 		return;
 
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < PYTHON_MAX_CLIP )
 		iResult = DefaultReload( PYTHON_MAX_CLIP, PYTHON_RELOAD, 2.6f );

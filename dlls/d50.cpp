@@ -213,7 +213,7 @@ void CD50::SecondaryAttack()
 
 void CD50::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 4 )
 	{

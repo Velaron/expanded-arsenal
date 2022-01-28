@@ -241,7 +241,7 @@ void CM41::SecondaryAttack( void )
 
 void CM41::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 50 )
 	{

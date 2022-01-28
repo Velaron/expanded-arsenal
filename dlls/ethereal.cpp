@@ -175,7 +175,7 @@ void CETHEREAL::PrimaryAttack()
 
 void CETHEREAL::Reload( void )
 {
-	int iResult;
+	int iResult = 0;
 
 	if ( m_iClip < 30 )
 	{
