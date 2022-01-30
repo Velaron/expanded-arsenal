@@ -3492,7 +3492,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_p904" );
 		GiveNamedItem( "weapon_chaingun" );
 		// Velaron: what?
-		GiveNamedItem( "`12" );
+		// GiveNamedItem( "`12" );
 #if !OEM_BUILD
 		GiveNamedItem( "weapon_357" );
 		GiveNamedItem( "weapon_flamethrower" );

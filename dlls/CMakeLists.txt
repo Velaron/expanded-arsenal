@@ -23,7 +23,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(server)
 
-set(SVDLL_LIBRARY expanded_arsenal)
+set(SVDLL_LIBRARY server)
 
 include(CheckIncludeFile)
 check_include_file("tgmath.h" HAVE_TGMATH_H)
