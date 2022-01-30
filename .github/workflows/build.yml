@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Android
-          path: android/app/build/outputs/apk/release/app-release-unsigned.apk
+          path: android/app/build/outputs/apk/release/app-release-unsigned-signed.apk
   windows:
     name: Windows
     runs-on: windows-latest
@@ -99,7 +99,7 @@ jobs:
         uses: actions/download-artifact@v2
       - name: Repackage binaries
         run: |
-          mv Android/app-release-unsigned.apk expanded-arsenal.apk
+          mv Android/app-release-unsigned-signed.apk expanded-arsenal.apk
           mkdir -p hl_expanded_arsenal/cl_dlls
           mkdir -p hl_expanded_arsenal/dlls
           mv Windows/build/cl_dll/Release/client.dll hl_expanded_arsenal/cl_dlls
