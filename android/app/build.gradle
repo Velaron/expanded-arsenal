@@ -28,7 +28,7 @@ android {
 		applicationId 'su.xash.expandedarsenal'
 		versionName getVersionName()
 		versionCode getVersionCode()
-		minSdkVersion 17
+		minSdkVersion 21
 		targetSdkVersion 29
 
 		externalNativeBuild {
@@ -37,7 +37,7 @@ android {
 			}
 		}
 	}
-	
+
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
 		targetCompatibility JavaVersion.VERSION_1_8
@@ -59,10 +59,10 @@ android {
 			path file('../../CMakeLists.txt')
 		}
 	}
+
     lint {
         abortOnError false
     }
-
 }
 
 dependencies {
