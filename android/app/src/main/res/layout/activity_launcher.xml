@@ -1,31 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/coordinatorLayout"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-	<com.google.android.material.textfield.TextInputLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:hint="@string/launch_parameters"
-		app:startIconDrawable="@drawable/baseline_settings_24">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/launchParametersLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:hint="@string/launch_parameters"
+        app:startIconDrawable="@drawable/baseline_settings_24">
 
-		<com.google.android.material.textfield.TextInputEditText
-			android:id="@+id/launchParameters"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:singleLine="true" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/launchParameters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
 
-	</com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-	<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-		android:id="@+id/launchButton"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="bottom|end"
-		android:layout_margin="16dp"
-		android:text="@string/launch"
-		app:icon="@drawable/baseline_play_arrow_24" />
+    <!--
+        honestly, this is so fucking stupid, margin is ignored if a
+        view has an anchor, so I have to do this stupid shit with
+        paddingTop, wtf???
+    -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/engineTypeLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingTop="8dp"
+        app:layout_anchor="@id/launchParametersLayout"
+        app:layout_anchorGravity="bottom"
+        android:layout_gravity="bottom"
+        android:hint="@string/engine_type">
+
+        <AutoCompleteTextView
+            android:id="@+id/engineType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/launchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="@string/launch"
+        app:icon="@drawable/baseline_play_arrow_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

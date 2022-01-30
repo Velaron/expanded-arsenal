@@ -11,4 +11,13 @@
     <string name="update">Update</string>
     <string name="install">Install</string>
     <string name="exit">Exit</string>
+    <string name="engine_type">ENGINE</string>
+    <string name="engine_not_installed">No engine is installed</string>
+    <string name="should_install_engine">You must install any version of Xash3D FWGS from Google Play or Github.</string>
+
+    <string-array name="engine_types">
+        <item>New Engine</item>
+        <item>Old Engine</item>
+        <item>Old Engine (Test)</item>
+    </string-array>
 </resources>
