@@ -41,5 +41,5 @@
 #define HUD_PRINTCENTER		4
 
 // Velaron: set to 0?
-#define WEAPON_SUIT		31
+#define WEAPON_SUIT		0
 #endif
