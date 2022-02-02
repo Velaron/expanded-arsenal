@@ -15,7 +15,7 @@ You can download a build at the [Releases](https://github.com/Velaron/expanded-a
 ## Installation
 To run Expanded Arsenal you need the latest developer build of Xash3D FWGS, which you can get [here](https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous), or just follow the instructions inside the app if you are not sure which file to download.
 
-You have to download [the mod from Mod DB](https://www.moddb.com/mods/half-life-expanded-arsenal) and copy `hl_expanded_arsenal` folder into your Xash3D FWGS directory.
+You have to download the mod [from Mod DB](https://www.moddb.com/mods/half-life-expanded-arsenal) and copy `hl_expanded_arsenal` folder into your Xash3D FWGS directory.
 After that, just install the APK and run.
 
 ## Building
