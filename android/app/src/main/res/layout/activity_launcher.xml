@@ -30,4 +30,15 @@
         android:layout_margin="16dp"
         android:text="@string/launch"
         app:icon="@drawable/baseline_play_arrow_24" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/donateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"
+        android:text="@string/donate"
+        app:iconGravity="end"
+        app:iconTint="#E53935"
+        app:icon="@drawable/outline_favorite_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
