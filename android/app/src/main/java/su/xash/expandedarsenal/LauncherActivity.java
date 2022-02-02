@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,18 +53,26 @@ public class LauncherActivity extends AppCompatActivity {
 		}
 	}
 
+	private String getEngineDownloadUrl() {
+		if (!Build.SUPPORTED_ABIS[0].contains("64")) {
+			return "https://github.com/FWGS/xash3d-fwgs/releases/download/continuous/xashdroid-32.apk";
+		} else {
+			return "https://github.com/FWGS/xash3d-fwgs/releases/download/continuous/xashdroid-64.apk";
+		}
+	}
+
 	private void checkForEngine() {
 		try {
 			PackageInfo info = getPackageManager().getPackageInfo("su.xash.engine", 0);
 
-			if (info.versionCode < XASH_MIN_VERSION) {
-				openDialog("https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous", getString(R.string.update_required),
+			if (info.versionCode > XASH_MIN_VERSION) {
+				openDialog(getEngineDownloadUrl(), getString(R.string.update_required),
 						getString(R.string.update_available, "Xash3D FWGS"));
 			} else {
 				checkForUpdates();
 			}
 		} catch (PackageManager.NameNotFoundException e) {
-			openDialog("https://github.com/FWGS/xash3d-fwgs/releases/tag/continuous",
+			openDialog(getEngineDownloadUrl(),
 					getString(R.string.engine_not_found), getString(R.string.engine_info));
 		}
 	}
@@ -86,7 +95,7 @@ public class LauncherActivity extends AppCompatActivity {
 					launchButton.setEnabled(true);
 				} else {
 					updateNotification.dismiss();
-					openDialog("https://github.com/Velaron/expanded-arsenal/releases/tag/continuous", getString(R.string.update_required),
+					openDialog("https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal.apk", getString(R.string.update_required),
 							getString(R.string.update_available, "Expanded Arsenal"));
 				}
 			} catch (JSONException | PackageManager.NameNotFoundException e) {
