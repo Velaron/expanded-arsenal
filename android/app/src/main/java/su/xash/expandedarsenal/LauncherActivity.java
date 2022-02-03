@@ -26,7 +26,8 @@ public class LauncherActivity extends AppCompatActivity {
 	private static final int XASH_MIN_VERSION = 1710;
 	private static final String COMMITS_URL = "https://api.github.com/repos/Velaron/expanded-arsenal/commits/main";
 	private static final String APK_URL = "https://github.com/Velaron/expanded-arsenal/releases/download/continuous/expanded-arsenal.apk";
-
+	
+	@SuppressLint("SetTextI18n")
 	@Override
 	public void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
@@ -66,7 +67,7 @@ public class LauncherActivity extends AppCompatActivity {
 		try {
 			PackageInfo info = getPackageManager().getPackageInfo("su.xash.engine", 0);
 
-			if (info.versionCode > XASH_MIN_VERSION) {
+			if (info.versionCode < XASH_MIN_VERSION) {
 				new MaterialAlertDialogBuilder(LauncherActivity.this)
 						.setTitle(R.string.update_required)
 						.setMessage(getString(R.string.update_available, "Xash3D FWGS"))
