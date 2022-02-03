@@ -1,5 +1,6 @@
 package su.xash.expandedarsenal;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
