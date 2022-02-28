@@ -57,9 +57,9 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define BOSS_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define BOSS_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define BOSS_9MMAR       ( 1 << 0 )
-#define BOSS_HANDGRENADE ( 1 << 1 )
-#define BOSS_SHOTGUN     ( 1 << 3 )
+#define BOSS_9MMAR       1
+#define BOSS_HANDGRENADE 2
+#define BOSS_SHOTGUN     3
 
 #define HEAD_GROUP     1
 #define HEAD_SFORCE    0
@@ -280,7 +280,7 @@ void CBoss ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, BOSS_SHOTGUN ) )
+		if ( HasWeapon( BOSS_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_ksg12", vecGunPos, vecGunAngles );
 		}
@@ -453,7 +453,7 @@ BOOL CBoss ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CBoss ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( BOSS_HANDGRENADE | BOSS_HANDGRENADE ) ) )
+	if ( !HasWeapon( BOSS_HANDGRENADE ) )
 	{
 		return FALSE;
 	}
@@ -482,7 +482,7 @@ BOOL CBoss ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, BOSS_HANDGRENADE ) )
+	if ( HasWeapon( BOSS_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -528,7 +528,7 @@ BOOL CBoss ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, BOSS_HANDGRENADE ) )
+	if ( HasWeapon( BOSS_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -832,7 +832,7 @@ void CBoss ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, BOSS_SHOTGUN ) )
+		if ( HasWeapon( BOSS_SHOTGUN ) )
 		{
 			DropItem( "weapon_ksg12", vecGunPos, vecGunAngles );
 		}
@@ -872,7 +872,7 @@ void CBoss ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case BOSS_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, BOSS_9MMAR ) )
+		if ( HasWeapon( BOSS_9MMAR ) )
 		{
 			Shoot();
 
@@ -960,15 +960,14 @@ void CBoss ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = BOSS_9MMAR | BOSS_HANDGRENADE;
-		// pev->weapons = BOSS_SHOTGUN;
-		// pev->weapons = BOSS_9MMAR | BOSS_GRENADELAUNCHER;
+		AddWeapon( BOSS_9MMAR );
+		AddWeapon( BOSS_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, BOSS_SHOTGUN ) )
+	if ( HasWeapon( BOSS_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -984,7 +983,7 @@ void CBoss ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, BOSS_SHOTGUN ) )
+	if ( HasWeapon( BOSS_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
@@ -1674,7 +1673,7 @@ void CBoss ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, BOSS_9MMAR ) )
+		if ( HasWeapon( BOSS_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1704,7 +1703,7 @@ void CBoss ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & BOSS_HANDGRENADE )
+		if ( HasWeapon( BOSS_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );

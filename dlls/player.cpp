@@ -188,6 +188,8 @@ int gmsgBhopcap = 0;
 int gmsgStatusText = 0;
 int gmsgStatusValue = 0;
 
+int gmsgWeapons = 0;
+
 void LinkUserMessages( void )
 {
 	// Already taken care of?
@@ -234,6 +236,8 @@ void LinkUserMessages( void )
 
 	gmsgStatusText = REG_USER_MSG( "StatusText", -1 );
 	gmsgStatusValue = REG_USER_MSG( "StatusValue", 3 );
+
+	gmsgWeapons = REG_USER_MSG( "Weapons", MAX_WEAPON_BYTES );
 }
 
 LINK_ENTITY_TO_CLASS( player, CBasePlayer )
@@ -815,10 +819,22 @@ void CBasePlayer::RemoveAllItems( BOOL removeSuit )
 	pev->viewmodel = 0;
 	pev->weaponmodel = 0;
 
-	if( removeSuit )
-		pev->weapons = 0;
+	if ( removeSuit == FALSE )
+	{
+		if ( HasWeapon( WEAPON_SUIT ) )
+		{
+			RemoveAllWeapons();       // clear all the weapons
+			AddWeapon( WEAPON_SUIT ); // leave only suit
+		}
+		else
+		{
+			RemoveAllWeapons(); // clear all the weapons
+		}
+	}
 	else
-		pev->weapons &= ~WEAPON_ALLWEAPONS;
+	{
+		RemoveAllWeapons(); // clear all the weapons
+	}
 
 	// Turn off flashlight
 	ClearBits( pev->effects, EF_DIMLIGHT );
@@ -2231,7 +2247,7 @@ void CBasePlayer::CheckSuitUpdate()
 	int isearch = m_iSuitPlayNext;
 
 	// Ignore suit updates if no suit
-	if( !( pev->weapons & ( 1 << WEAPON_SUIT ) ) )
+	if( !( HasWeapon( WEAPON_SUIT ) ) )
 		return;
 
 	// if in range of radiation source, ping geiger counter
@@ -2292,7 +2308,7 @@ void CBasePlayer::SetSuitUpdate( const char *name, int fgroup, int iNoRepeatTime
 	int iempty = -1;
 
 	// Ignore suit updates if no suit
-	if( !( pev->weapons & ( 1 << WEAPON_SUIT ) ) )
+	if( !( HasWeapon( WEAPON_SUIT ) ) )
 		return;
 
 	if( g_pGameRules->IsMultiplayer() )
@@ -3301,7 +3317,7 @@ void CBasePlayer::FlashlightTurnOn( void )
 		return;
 	}
 
-	if( (pev->weapons & ( 1 << WEAPON_SUIT ) ) )
+	if( (HasWeapon( WEAPON_SUIT ) ) )
 	{
 		EMIT_SOUND_DYN( ENT( pev ), CHAN_WEAPON, SOUND_FLASHLIGHT_ON, 1.0, ATTN_NORM, 0, PITCH_NORM );
 		SetBits( pev->effects, EF_DIMLIGHT );
@@ -3463,6 +3479,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		break;
 	case 101:
 		gEvilImpulse101 = TRUE;
+
 		GiveNamedItem( "item_suit" );
 		GiveNamedItem( "item_battery" );
 		GiveNamedItem( "weapon_knife" );
@@ -3491,11 +3508,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_tripmine" );
 		GiveNamedItem( "weapon_p904" );
 		GiveNamedItem( "weapon_chaingun" );
-		// Velaron: what?
-		// GiveNamedItem( "`12" );
-#if !OEM_BUILD
 		GiveNamedItem( "weapon_357" );
-		GiveNamedItem( "weapon_flamethrower" );
 		GiveNamedItem( "ammo_357" );
 		GiveNamedItem( "weapon_crossbow" );
 		GiveNamedItem( "ammo_crossbow" );
@@ -3507,7 +3520,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_satchel" );
 		GiveNamedItem( "weapon_snark" );
 		GiveNamedItem( "weapon_hornetgun" );
-#endif
+
 		gEvilImpulse101 = FALSE;
 		break;
 	case 102:
@@ -4140,6 +4153,15 @@ void CBasePlayer::UpdateClientData( void )
 			WRITE_BYTE( g_bhopcap );
 		MESSAGE_END();
 	}
+
+	if ( memcmp( m_iWeapons, m_iClientWeapons, MAX_WEAPON_BYTES ) )
+	{
+		MESSAGE_BEGIN( MSG_ONE, gmsgWeapons, NULL, pev );
+		WRITE_BYTES( m_iWeapons, MAX_WEAPON_BYTES );
+		MESSAGE_END();
+
+		memcpy( m_iClientWeapons, m_iWeapons, MAX_WEAPON_BYTES );
+	}
 }
 
 //=========================================================
@@ -4519,7 +4541,7 @@ void CBasePlayer::DropPlayerItem( char *pszItemName )
 
 			UTIL_MakeVectors( pev->angles ); 
 
-			pev->weapons &= ~( 1 << pWeapon->m_iId );// take item off hud
+			RemoveWeapon( pWeapon->m_iId );// take item off hud
 
 			CWeaponBox *pWeaponBox = (CWeaponBox *)CBaseEntity::Create( "weaponbox", pev->origin + gpGlobals->v_forward * 10, pev->angles, edict() );
 			pWeaponBox->pev->angles.x = 0;

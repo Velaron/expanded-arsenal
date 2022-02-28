@@ -57,9 +57,9 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define MASSN_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define MASSN_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define MASSN_9MMAR       ( 1 << 0 )
-#define MASSN_HANDGRENADE ( 1 << 1 )
-#define MASSN_SHOTGUN     ( 1 << 3 )
+#define MASSN_9MMAR       1
+#define MASSN_HANDGRENADE 2
+#define MASSN_SHOTGUN     4
 
 #define HEAD_GROUP     1
 #define HEAD_SFORCE    0
@@ -283,7 +283,7 @@ void CMassn ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, MASSN_SHOTGUN ) )
+		if ( HasWeapon( MASSN_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_m1014", vecGunPos, vecGunAngles );
 		}
@@ -456,7 +456,7 @@ BOOL CMassn ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CMassn ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( MASSN_HANDGRENADE | MASSN_HANDGRENADE ) ) )
+	if ( !HasWeapon( MASSN_HANDGRENADE ) )
 	{
 		return FALSE;
 	}
@@ -485,7 +485,7 @@ BOOL CMassn ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, MASSN_HANDGRENADE ) )
+	if ( HasWeapon( MASSN_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -531,7 +531,7 @@ BOOL CMassn ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, MASSN_HANDGRENADE ) )
+	if ( HasWeapon( MASSN_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -835,7 +835,7 @@ void CMassn ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, MASSN_SHOTGUN ) )
+		if ( HasWeapon( MASSN_SHOTGUN ) )
 		{
 			DropItem( "weapon_m1014", vecGunPos, vecGunAngles );
 		}
@@ -875,7 +875,7 @@ void CMassn ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case MASSN_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, MASSN_9MMAR ) )
+		if ( HasWeapon( MASSN_9MMAR ) )
 		{
 			Shoot();
 
@@ -963,15 +963,14 @@ void CMassn ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = MASSN_9MMAR | MASSN_HANDGRENADE;
-		// pev->weapons = MASSN_SHOTGUN;
-		// pev->weapons = MASSN_9MMAR | MASSN_GRENADELAUNCHER;
+		AddWeapon( MASSN_9MMAR );
+		AddWeapon( MASSN_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, MASSN_SHOTGUN ) )
+	if ( HasWeapon( MASSN_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -987,7 +986,7 @@ void CMassn ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, MASSN_SHOTGUN ) )
+	if ( HasWeapon( MASSN_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
@@ -1677,7 +1676,7 @@ void CMassn ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, MASSN_9MMAR ) )
+		if ( HasWeapon( MASSN_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1707,7 +1706,7 @@ void CMassn ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & MASSN_HANDGRENADE )
+		if ( HasWeapon( MASSN_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );

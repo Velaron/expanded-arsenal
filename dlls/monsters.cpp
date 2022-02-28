@@ -106,6 +106,8 @@ TYPEDESCRIPTION	CBaseMonster::m_SaveData[] =
 
 	DEFINE_FIELD( CBaseMonster, m_scriptState, FIELD_INTEGER ),
 	DEFINE_FIELD( CBaseMonster, m_pCine, FIELD_CLASSPTR ),
+
+	DEFINE_ARRAY( CBaseMonster, m_iWeapons, FIELD_CHARACTER, MAX_WEAPON_BYTES ),
 };
 
 //IMPLEMENT_SAVERESTORE( CBaseMonster, CBaseToggle )
@@ -2942,6 +2944,22 @@ void CBaseMonster::KeyValue( KeyValueData *pkvd )
 	else if( FStrEq( pkvd->szKeyName, "TriggerCondition" ) )
 	{
 		m_iTriggerCondition = atoi( pkvd->szValue );
+		pkvd->fHandled = TRUE;
+	}
+	else if ( FStrEq( pkvd->szKeyName, "weapons" ) )
+	{
+		int weapons = atoi( pkvd->szValue );
+
+		if ( weapons )
+			m_bHaveWeapons = true;
+
+		// convert bits to weapons
+		for ( int i = 0; i < 32; i++ )
+		{
+			if ( FBitSet( weapons, BIT( i ) ) )
+				AddWeapon( i );
+		}
+		
 		pkvd->fHandled = TRUE;
 	}
 	else

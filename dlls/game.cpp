@@ -546,11 +546,6 @@ cvar_t sk_plr_mp5a31 = { "sk_plr_mp5a31", "0" };
 cvar_t sk_plr_mp5a32 = { "sk_plr_mp5a32", "0" };
 cvar_t sk_plr_mp5a33 = { "sk_plr_mp5a33", "0" };
 
-// MP5A3
-cvar_t sk_plr_piece1 = { "sk_plr_piece1", "0" };
-cvar_t sk_plr_piece2 = { "sk_plr_piece2", "0" };
-cvar_t sk_plr_piece3 = { "sk_plr_piece3", "0" };
-
 // M203 grenade
 cvar_t	sk_plr_9mmAR_grenade1 = {"sk_plr_9mmAR_grenade1","0"};
 cvar_t	sk_plr_9mmAR_grenade2 = {"sk_plr_9mmAR_grenade2","0"};
@@ -1181,10 +1176,6 @@ void GameDLLInit( void )
 	CVAR_REGISTER( &sk_plr_p2261 ); // {"sk_plr_crowbar1","0"};
 	CVAR_REGISTER( &sk_plr_p2262 ); // {"sk_plr_crowbar2","0"};
 	CVAR_REGISTER( &sk_plr_p2263 ); // {"sk_plr_crowbar3","0"};
-
-	CVAR_REGISTER( &sk_plr_piece1 ); // {"sk_plr_crowbar1","0"};
-	CVAR_REGISTER( &sk_plr_piece2 ); // {"sk_plr_crowbar2","0"};
-	CVAR_REGISTER( &sk_plr_piece3 ); // {"sk_plr_crowbar3","0"};
 
 	CVAR_REGISTER( &sk_plr_beretta1 ); // {"sk_plr_crowbar1","0"};
 	CVAR_REGISTER( &sk_plr_beretta2 ); // {"sk_plr_crowbar2","0"};

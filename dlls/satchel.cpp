@@ -218,7 +218,7 @@ int CSatchel::AddToPlayer( CBasePlayer *pPlayer )
 {
 	int bResult = CBasePlayerItem::AddToPlayer( pPlayer );
 
-	pPlayer->pev->weapons |= ( 1 << m_iId );
+	pPlayer->AddWeapon( m_iId );
 	m_chargeReady = SATCHEL_IDLE;// this satchel charge weapon now forgets that any satchels are deployed by it.
 
 	if( bResult )
@@ -320,7 +320,7 @@ void CSatchel::Holster( int skiplocal /* = 0 */ )
 
 	if( !m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] && m_chargeReady != SATCHEL_READY )
 	{
-		m_pPlayer->pev->weapons &= ~( 1 << WEAPON_SATCHEL );
+		m_pPlayer->RemoveWeapon( WEAPON_SATCHEL );
 		DestroyItem();
 	}
 }

@@ -729,6 +729,9 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		case WEAPON_MP5:
 			pWeapon = &g_Mp5;
 			break;
+		case WEAPON_P904:
+		    pWeapon = &g_P904;
+		    break;
 		case WEAPON_CROSSBOW:
 			pWeapon = &g_Crossbow;
 			break;
@@ -750,11 +753,11 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		case WEAPON_HANDGRENADE:
 			pWeapon = &g_HandGren;
 			break;
-		case WEAPON_SATCHEL:
-			pWeapon = &g_Satchel;
-			break;
 		case WEAPON_TRIPMINE:
 			pWeapon = &g_Tripmine;
+			break;
+		case WEAPON_SATCHEL:
+			pWeapon = &g_Satchel;
 			break;
 		case WEAPON_SNARK:
 			pWeapon = &g_Snark;
@@ -768,9 +771,6 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	    case WEAPON_MP5A3:
 		    pWeapon = &g_Mp5a3;
 		    break;
-	    case WEAPON_FNFAL:
-		    pWeapon = &g_fnfal;
-		    break;
 	    case WEAPON_DBARREL:
 		    pWeapon = &g_CDbarrel;
 		    break;
@@ -782,6 +782,9 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		    break;
 	    case WEAPON_M41:
 		    pWeapon = &g_CM41;
+		    break;
+		case WEAPON_P226:
+		    pWeapon = &g_CP226;
 		    break;
 	    case WEAPON_PIPE:
 		    pWeapon = &g_CPipe;
@@ -795,17 +798,14 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	    case WEAPON_COLT45:
 		    pWeapon = &g_CColt45;
 		    break;
+		case WEAPON_KSG12:
+		    pWeapon = &g_KSG12;
+		    break;
 	    case WEAPON_M1014:
 		    pWeapon = &g_M1014;
 		    break;
-	    case WEAPON_KSG12:
-		    pWeapon = &g_KSG12;
-		    break;
-	    case WEAPON_P904:
-		    pWeapon = &g_P904;
-		    break;
-	    case WEAPON_P226:
-		    pWeapon = &g_CP226;
+		case WEAPON_FNFAL:
+		    pWeapon = &g_fnfal;
 		    break;
 	    case WEAPON_CHAINGUN:
 		    pWeapon = &g_CG;

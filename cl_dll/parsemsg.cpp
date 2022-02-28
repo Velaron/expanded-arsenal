@@ -162,3 +162,9 @@ float READ_HIRESANGLE( void )
 {
 	return (float)( READ_SHORT() * ( 360.0 / 65536 ) );
 }
+
+void READ_BYTES( byte *out, int count )
+{
+	for ( int i = 0; i < count && !giBadRead; i++ )
+		out[i] = READ_BYTE();
+}

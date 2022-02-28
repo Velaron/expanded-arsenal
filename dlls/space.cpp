@@ -57,9 +57,9 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define SPACE_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define SPACE_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define SPACE_9MMAR       ( 1 << 0 )
-#define SPACE_HANDGRENADE ( 1 << 1 )
-#define SPACE_SHOTGUN     ( 1 << 3 )
+#define SPACE_9MMAR       1
+#define SPACE_HANDGRENADE 2
+#define SPACE_SHOTGUN     4
 
 #define HEAD_GROUP     1
 #define HEAD_SFORCE    0
@@ -282,7 +282,7 @@ void CSpace ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, SPACE_SHOTGUN ) )
+		if ( HasWeapon( SPACE_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_d50", vecGunPos, vecGunAngles );
 		}
@@ -455,7 +455,7 @@ BOOL CSpace ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CSpace ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( SPACE_HANDGRENADE | SPACE_HANDGRENADE ) ) )
+	if ( !HasWeapon( SPACE_HANDGRENADE ) )
 	{
 		return FALSE;
 	}
@@ -484,7 +484,7 @@ BOOL CSpace ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, SPACE_HANDGRENADE ) )
+	if ( HasWeapon( SPACE_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -530,7 +530,7 @@ BOOL CSpace ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, SPACE_HANDGRENADE ) )
+	if ( HasWeapon( SPACE_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -834,7 +834,7 @@ void CSpace ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, SPACE_SHOTGUN ) )
+		if ( HasWeapon( SPACE_SHOTGUN ) )
 		{
 			DropItem( "weapon_d50", vecGunPos, vecGunAngles );
 		}
@@ -875,7 +875,7 @@ void CSpace ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case SPACE_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, SPACE_9MMAR ) )
+		if ( HasWeapon( SPACE_9MMAR ) )
 		{
 			Shoot();
 
@@ -963,15 +963,14 @@ void CSpace ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = SPACE_9MMAR | SPACE_HANDGRENADE;
-		// pev->weapons = SPACE_SHOTGUN;
-		// pev->weapons = SPACE_9MMAR | SPACE_GRENADELAUNCHER;
+		AddWeapon( SPACE_9MMAR );
+		AddWeapon( SPACE_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, SPACE_SHOTGUN ) )
+	if ( HasWeapon( SPACE_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -987,7 +986,7 @@ void CSpace ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, SPACE_SHOTGUN ) )
+	if ( HasWeapon( SPACE_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
@@ -1677,7 +1676,7 @@ void CSpace ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, SPACE_9MMAR ) )
+		if ( HasWeapon( SPACE_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1707,7 +1706,7 @@ void CSpace ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & SPACE_HANDGRENADE )
+		if ( HasWeapon( SPACE_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );

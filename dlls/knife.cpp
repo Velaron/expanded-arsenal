@@ -89,14 +89,12 @@ int CKnife::GetItemInfo( ItemInfo *p )
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = WEAPON_NOCLIP;
-	p->iSlot = 0;     //���� � ����, ������� � 0. � ������ ������ 1
-	p->iPosition = 1; //������� � ����� ����, ������� � 0. � ������ ������ 2
+	p->iSlot = 0;
+	p->iPosition = 1;
 	p->iId = WEAPON_KNIFE;
 	p->iWeight = CROWBAR_WEIGHT;
 	return 1;
 }
-
-//��������� ����� ������ ������ �� ������� ����� �++
 
 BOOL CKnife::Deploy()
 {

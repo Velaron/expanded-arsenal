@@ -632,7 +632,7 @@ public:
 	// Screen information
 	SCREENINFO	m_scrinfo;
 
-	int	m_iWeaponBits;
+	byte m_iWeaponBits[MAX_WEAPON_BYTES];
 	int	m_fPlayerDead;
 	int m_iIntermission;
 
@@ -646,6 +646,11 @@ public:
 	float GetSensitivity();
 
 	void GetAllPlayersInfo( void );
+
+	int _cdecl MsgFunc_Weapons( const char *pszName, int iSize, void *pbuf );
+
+	bool HasWeapon( int weaponnum ) { return FBitSet( m_iWeaponBits[weaponnum >> 3], BIT( weaponnum & 7 ) ); }
+	void AddWeapon( int weaponnum ) { SetBits( m_iWeaponBits[weaponnum >> 3], BIT( weaponnum & 7 ) ); }
 };
 
 extern CHud gHUD;

@@ -59,7 +59,7 @@ enum
 
 #define ASSASSIN_AE_DROP      4
 #define ASSASSIN_BODY_GUNGONE 5
-#define ASSASSIN_SHOTGUN      ( 1 << 3 )
+#define ASSASSIN_SHOTGUN      4
 #define GUN_GROUP             2
 #define GUN_MP5               0
 #define GUN_SHOTGUN           1
@@ -289,7 +289,7 @@ void CHAssassin::HandleAnimEvent( MonsterEvent_t *pEvent )
 			SetBodygroup( GUN_GROUP, GUN_NONE );
 
 			// now spawn a gun.
-			if ( FBitSet( pev->weapons, ASSASSIN_SHOTGUN ) )
+			if ( HasWeapon( ASSASSIN_SHOTGUN ) )
 			{
 				DropItem( "weapon_shotgun", vecGunPos, vecGunAngles );
 			}

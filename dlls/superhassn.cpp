@@ -58,7 +58,7 @@ enum
 #define SUPER_AE_JUMP      3
 #define SUPER_AE_DROP      4
 #define SUPER_BODY_GUNGONE 5
-#define SUPER_SHOTGUN      ( 1 << 3 )
+#define SUPER_SHOTGUN      4
 #define GUN_GROUP          2
 #define GUN_MP5            0
 #define GUN_SHOTGUN        1
@@ -284,7 +284,7 @@ void CSuper ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, SUPER_SHOTGUN ) )
+		if ( HasWeapon( SUPER_SHOTGUN ) )
 		{
 			DropItem( "weapon_357", vecGunPos, vecGunAngles );
 		}

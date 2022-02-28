@@ -160,4 +160,10 @@ inline void *GET_PRIVATE( edict_t *pent )
 
 #define PLAYER_CNX_STATS		( *g_engfuncs.pfnGetPlayerStats )
 
+inline void WRITE_BYTES( const byte *data, int nBytes )
+{
+	for ( int i = 0; i < nBytes; i++, data++ )
+		WRITE_BYTE( *data );
+}
+
 #endif		//ENGINECALLBACK_H

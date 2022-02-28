@@ -320,6 +320,11 @@ int __MsgFunc_AllowSpec( const char *pszName, int iSize, void *pbuf )
 #endif
 	return 0;
 }
+
+int __MsgFunc_Weapons( const char *pszName, int iSize, void *pbuf )
+{
+	return gHUD.MsgFunc_Weapons( pszName, iSize, pbuf );
+}
  
 // This is called every time the DLL is loaded
 void CHud::Init( void )
@@ -366,6 +371,8 @@ void CHud::Init( void )
 
 	// VGUI Menus
 	HOOK_MESSAGE( VGUIMenu );
+
+	HOOK_MESSAGE( Weapons );
 
 	CVAR_CREATE( "hud_classautokill", "1", FCVAR_ARCHIVE | FCVAR_USERINFO );		// controls whether or not to suicide immediately on TF class switch
 	CVAR_CREATE( "hud_takesshots", "0", FCVAR_ARCHIVE );		// controls whether or not to automatically take screenshots at the end of a round

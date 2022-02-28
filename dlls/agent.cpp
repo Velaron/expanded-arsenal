@@ -57,10 +57,10 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define AGENT_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define AGENT_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define AGENT_9MMAR           ( 1 << 0 )
-#define AGENT_HANDGRENADE     ( 1 << 1 )
-#define AGENT_GRENADELAUNCHER ( 1 << 2 )
-#define AGENT_SHOTGUN         ( 1 << 3 )
+#define AGENT_9MMAR           1
+#define AGENT_HANDGRENADE     2
+#define AGENT_GRENADELAUNCHER 3
+#define AGENT_SHOTGUN         4
 
 #define HEAD_GROUP     1
 #define HEAD_SFORCE    0
@@ -281,7 +281,7 @@ void CAgent ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, AGENT_SHOTGUN ) )
+		if ( HasWeapon( AGENT_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_dbarrel", vecGunPos, vecGunAngles );
 		}
@@ -296,7 +296,7 @@ void CAgent ::GibMonster( void )
 			pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
 		}
 
-		if ( FBitSet( pev->weapons, AGENT_GRENADELAUNCHER ) )
+		if ( HasWeapon( AGENT_GRENADELAUNCHER ) )
 		{
 			pGun = DropItem( "weapon_beretta", vecGunPos, vecGunAngles );
 			if ( pGun )
@@ -465,7 +465,7 @@ BOOL CAgent ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CAgent ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( AGENT_HANDGRENADE | AGENT_GRENADELAUNCHER ) ) )
+	if ( !HasWeapon( AGENT_HANDGRENADE ) && !HasWeapon( AGENT_GRENADELAUNCHER ) )
 	{
 		return FALSE;
 	}
@@ -494,7 +494,7 @@ BOOL CAgent ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, AGENT_HANDGRENADE ) )
+	if ( HasWeapon( AGENT_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -540,7 +540,7 @@ BOOL CAgent ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, AGENT_HANDGRENADE ) )
+	if ( HasWeapon( AGENT_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -844,7 +844,7 @@ void CAgent ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, AGENT_SHOTGUN ) )
+		if ( HasWeapon( AGENT_SHOTGUN ) )
 		{
 			DropItem( "weapon_dbarrel", vecGunPos, vecGunAngles );
 		}
@@ -852,7 +852,7 @@ void CAgent ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		{
 			DropItem( "weapon_p904", vecGunPos, vecGunAngles );
 		}
-		if ( FBitSet( pev->weapons, AGENT_GRENADELAUNCHER ) )
+		if ( HasWeapon( AGENT_GRENADELAUNCHER ) )
 		{
 			DropItem( "ammo_ARgrenades", BodyTarget( pev->origin ), vecGunAngles );
 		}
@@ -898,7 +898,7 @@ void CAgent ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case AGENT_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, AGENT_9MMAR ) )
+		if ( HasWeapon( AGENT_9MMAR ) )
 		{
 			Shoot();
 
@@ -986,15 +986,14 @@ void CAgent ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = AGENT_9MMAR | AGENT_HANDGRENADE;
-		// pev->weapons = AGENT_SHOTGUN;
-		// pev->weapons = AGENT_9MMAR | AGENT_GRENADELAUNCHER;
+		AddWeapon( AGENT_9MMAR );
+		AddWeapon( AGENT_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, AGENT_SHOTGUN ) )
+	if ( HasWeapon( AGENT_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -1010,11 +1009,11 @@ void CAgent ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, AGENT_SHOTGUN ) )
+	if ( HasWeapon( AGENT_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
-	else if ( FBitSet( pev->weapons, AGENT_GRENADELAUNCHER ) )
+	else if ( HasWeapon( AGENT_GRENADELAUNCHER ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_M203 );
 		pev->skin = 1; // alway dark skin
@@ -1705,7 +1704,7 @@ void CAgent ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, AGENT_9MMAR ) )
+		if ( HasWeapon( AGENT_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1735,7 +1734,7 @@ void CAgent ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & AGENT_HANDGRENADE )
+		if ( HasWeapon( AGENT_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );
@@ -1961,7 +1960,7 @@ Schedule_t *CAgent ::GetSchedule( void )
 		}
 		// can grenade launch
 
-		else if ( FBitSet( pev->weapons, AGENT_GRENADELAUNCHER ) && HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_AGENT_GRENADE ) )
+		else if ( HasWeapon( AGENT_GRENADELAUNCHER ) && HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_AGENT_GRENADE ) )
 		{
 			// shoot a grenade if you can
 			return GetScheduleOfType( SCHED_RANGE_ATTACK2 );

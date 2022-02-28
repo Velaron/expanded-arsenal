@@ -111,7 +111,7 @@ int CHudFlashlight::Draw( float flTime )
 	if( gEngfuncs.IsSpectateOnly() )
 		return 1;
 
-	if( !( gHUD.m_iWeaponBits & ( 1 << ( WEAPON_SUIT ) ) ) )
+	if ( !gHUD.HasWeapon( WEAPON_SUIT ) )
 		return 1;
 
 	if( m_fOn )

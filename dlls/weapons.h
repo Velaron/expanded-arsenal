@@ -95,12 +95,7 @@ public:
 #define WEAPON_M1014            29
 #define WEAPON_FNFAL            30
 #define WEAPON_CHAINGUN         31
-
-#define WEAPON_ALLWEAPONS		(~(1<<WEAPON_SUIT))
-
-#define WEAPON_SUIT				0	// ?????
-
-#define MAX_WEAPONS			64
+#define WEAPON_SUIT 			( MAX_WEAPONS - 1 )
 
 #define MAX_NORMAL_BATTERY	100
 

@@ -98,7 +98,7 @@ void CHandGrenade::Holster( int skiplocal /* = 0 */ )
 	else
 	{
 		// no more grenades!
-		m_pPlayer->pev->weapons &= ~( 1 << WEAPON_HANDGRENADE );
+		m_pPlayer->RemoveWeapon( WEAPON_HANDGRENADE );
 		DestroyItem();
 	}
 

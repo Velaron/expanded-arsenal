@@ -304,120 +304,132 @@ void W_Precache( void )
 	UTIL_PrecacheOther( "item_antidote" );
 	UTIL_PrecacheOther( "item_security" );
 	UTIL_PrecacheOther( "item_longjump" );
+	
+	// AK-47
+	UTIL_PrecacheOtherWeapon( "weapon_ak47" );
+	UTIL_PrecacheOther( "ammo_ak47clip" );
 
-	// shotgun
-	UTIL_PrecacheOtherWeapon( "weapon_shotgun" );
-	UTIL_PrecacheOtherWeapon( "weapon_p226" );
-	UTIL_PrecacheOther( "ammo_buckshot" );
-	UTIL_PrecacheOther( "ammo_p226" );
-	UTIL_PrecacheOther( "ammo_turret" );
-	
-	// dbarrel
-	UTIL_PrecacheOtherWeapon( "weapon_dbarrel" );
-	UTIL_PrecacheOther( "ammo_buckshot" );
-
-	// crowbar
-	UTIL_PrecacheOtherWeapon( "weapon_ksg12" );
-	UTIL_PrecacheOtherWeapon( "weapon_x23" );
-	UTIL_PrecacheOtherWeapon( "weapon_mac10" );
-	UTIL_PrecacheOtherWeapon( "weapon_p904" );
-	UTIL_PrecacheOtherWeapon( "weapon_crowbar" );
-	UTIL_PrecacheOtherWeapon( "weapon_piece" );
-	
-	// knife
-	UTIL_PrecacheOtherWeapon( "weapon_knife" );
-	
+	// Auto Sniper
 	UTIL_PrecacheOtherWeapon( "weapon_asniper" );
-	UTIL_PrecacheOtherWeapon( "weapon_colt45" );
-	UTIL_PrecacheOther( "ammo_colt45clip" );
-	
-	UTIL_PrecacheOtherWeapon( "weapon_nuclear" );
-	
-	UTIL_PrecacheOtherWeapon( "weapon_d50" );
-	
-	UTIL_PrecacheOther( "ammo_50cal" );
-	UTIL_PrecacheOther( "ammo_9mmbox" );
-	
-	// knife
-	UTIL_PrecacheOtherWeapon( "weapon_deagle" );
-	
-	UTIL_PrecacheOtherWeapon( "weapon_m1014" );
-	
-	UTIL_PrecacheOtherWeapon( "weapon_pipe" );
-	
-	// knife
-	UTIL_PrecacheOtherWeapon( "weapon_m41" );
-	
-	// Flamethrower
-	UTIL_PrecacheOtherWeapon( "weapon_flamethrower" );
-	UTIL_PrecacheOther( "ammo_fuel" );
-	
-	// knife
+	UTIL_PrecacheOther( "ammo_autosniperclip" );
+
+	// Beretta
 	UTIL_PrecacheOtherWeapon( "weapon_beretta" );
 	UTIL_PrecacheOther( "ammo_9mmclip" );
-	
-	// ak47
-	UTIL_PrecacheOtherWeapon( "weapon_ak47" );
-	UTIL_PrecacheOther( "ammo_762mm" );
-	
-	// mp5a3
-	UTIL_PrecacheOtherWeapon( "weapon_mp5a3" );
-	UTIL_PrecacheOther( "ammo_9mmAR" );
 
-	// glock
-	UTIL_PrecacheOtherWeapon( "weapon_9mmhandgun" );
-	UTIL_PrecacheOther( "ammo_9mmclip" );
+	// Chaingun
+	UTIL_PrecacheOtherWeapon( "weapon_chaingun" );
 
-	// mp5
-	UTIL_PrecacheOtherWeapon( "weapon_9mmAR" );
-	UTIL_PrecacheOther( "ammo_ARgrenades" );
-	UTIL_PrecacheOther( "ammo_556mm" );
+	// Colt .45
+	UTIL_PrecacheOtherWeapon( "weapon_colt45" );
+	UTIL_PrecacheOther( "ammo_colt45clip" );
 
-	// 9mm ammo box
-	UTIL_PrecacheOther( "ammo_9mmbox" );
-
-#if !OEM_BUILD && !HLDEMO_BUILD
-	// python
-	UTIL_PrecacheOtherWeapon( "weapon_357" );
-	UTIL_PrecacheOther( "ammo_357" );
-
-	// gauss
-	UTIL_PrecacheOtherWeapon( "weapon_gauss" );
-	UTIL_PrecacheOther( "ammo_gaussclip" );
-
-	// rpg
-	UTIL_PrecacheOtherWeapon( "weapon_rpg" );
-	UTIL_PrecacheOther( "ammo_rpgclip" );
-
-	// crossbow
+	// Crossbow
 	UTIL_PrecacheOtherWeapon( "weapon_crossbow" );
 	UTIL_PrecacheOther( "ammo_crossbow" );
 
-	// egon
+	// Crowbar
+	UTIL_PrecacheOtherWeapon( "weapon_crowbar" );
+
+	// D .50
+	UTIL_PrecacheOtherWeapon( "weapon_d50" );
+	UTIL_PrecacheOther( "ammo_50cal" );
+
+	// Double Barrel
+	UTIL_PrecacheOtherWeapon( "weapon_dbarrel" );
+	UTIL_PrecacheOther( "ammo_dbarrelclip" );
+
+	// Desert Eagle
+	UTIL_PrecacheOtherWeapon( "weapon_deagle" );
+	UTIL_PrecacheOther( "ammo_de_clip" );
+
+	// Egon
 	UTIL_PrecacheOtherWeapon( "weapon_egon" );
-	UTIL_PrecacheOtherWeapon( "weapon_chaingun" );
-#endif
-	// tripmine
-	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
-#if !OEM_BUILD && !HLDEMO_BUILD
-	// satchel charge
-	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
+	UTIL_PrecacheOther( "ammo_egonclip" );
+
+	// FN FAL
 	UTIL_PrecacheOtherWeapon( "weapon_fnfal" );
-#endif
-	// hand grenade
+	UTIL_PrecacheOther( "ammo_fnfalclip" );
+
+	// Gauss
+	UTIL_PrecacheOtherWeapon( "weapon_gauss" );
+	UTIL_PrecacheOther( "ammo_gaussclip" );
+
+	// Glock
+	UTIL_PrecacheOtherWeapon( "weapon_9mmhandgun" );
+	UTIL_PrecacheOther( "ammo_glockclip" );
+
+	// Hand Grenade
 	UTIL_PrecacheOtherWeapon("weapon_handgrenade");
-#if !OEM_BUILD && !HLDEMO_BUILD
-	// squeak grenade
+
+	// Hornet Gun
+	UTIL_PrecacheOtherWeapon( "weapon_hornetgun" );
+
+	// Knife
+	UTIL_PrecacheOtherWeapon( "weapon_knife" );
+
+	// KSG-12
+	UTIL_PrecacheOtherWeapon( "weapon_ksg12" );
+	UTIL_PrecacheOther( "ammo_23x75" );
+
+	// M41
+	UTIL_PrecacheOtherWeapon( "weapon_m41" );
+	UTIL_PrecacheOther( "ammo_turret" );
+
+	// M1014
+	UTIL_PrecacheOtherWeapon( "weapon_m1014" );
+	UTIL_PrecacheOther( "ammo_usp" );
+
+	// MP5
+	UTIL_PrecacheOtherWeapon( "weapon_9mmAR" );
+	UTIL_PrecacheOther( "ammo_mp5clip" );
+	UTIL_PrecacheOther( "ammo_9mmbox" );
+	UTIL_PrecacheOther( "ammo_mp5grenades" );
+	
+	// MP5A3
+	UTIL_PrecacheOtherWeapon( "weapon_mp5a3" );
+	UTIL_PrecacheOther( "ammo_9mmAR" );
+
+	// Nuclear Charge
+	UTIL_PrecacheOtherWeapon( "weapon_nuclear" );
+
+	// P226
+	UTIL_PrecacheOtherWeapon( "weapon_p226" );
+	UTIL_PrecacheOther( "ammo_20mm" );
+
+	// P904
+	UTIL_PrecacheOtherWeapon( "weapon_p904" );
+	UTIL_PrecacheOther( "ammo_p904" );
+
+	// Pipe
+	UTIL_PrecacheOtherWeapon( "weapon_pipe" );
+
+	// Python
+	UTIL_PrecacheOtherWeapon( "weapon_357" );
+	UTIL_PrecacheOther( "ammo_357" );
+
+	// RPG
+	UTIL_PrecacheOtherWeapon( "weapon_rpg" );
+	UTIL_PrecacheOther( "ammo_rpgclip" );
+
+	// Satchel Charge
+	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
+
+	// Shotgun
+	UTIL_PrecacheOtherWeapon( "weapon_shotgun" );
+	UTIL_PrecacheOther( "ammo_buckshot" );
+
+	// Snark
 	UTIL_PrecacheOtherWeapon( "weapon_snark" );
 
-	// hornetgun
-	UTIL_PrecacheOtherWeapon( "weapon_hornetgun" );
+	// Tripmine
+	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
 
 	if( g_pGameRules->IsDeathmatch() )
 	{
-		UTIL_PrecacheOther( "weaponbox" );// container for dropped deathmatch weapons
+		UTIL_PrecacheOther( "weaponbox" ); // container for dropped deathmatch weapons
 	}
-#endif
+
 	g_sModelIndexFireball = PRECACHE_MODEL( "sprites/zerogxplode.spr" );// fireball
 	g_sModelIndexFlame = PRECACHE_MODEL( "sprites/flame.spr" );
 	g_sModelIndexWExplosion = PRECACHE_MODEL( "sprites/WXplo1.spr" );// underwater fireball
@@ -811,7 +823,7 @@ int CBasePlayerWeapon::AddToPlayer( CBasePlayer *pPlayer )
 {
 	int bResult = CBasePlayerItem::AddToPlayer( pPlayer );
 
-	pPlayer->pev->weapons |= ( 1 << m_iId );
+	pPlayer->AddWeapon( m_iId );
 
 	if( !m_iPrimaryAmmoType )
 	{

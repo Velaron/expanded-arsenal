@@ -150,7 +150,6 @@ struct skilldata_t
 	float plrDmgD50;
 	float plrDmgMP5A3;
 	float plrDmgM41;
-	float plrDmgPiece;
 	float plrDmgPipe;
 	float plrDmgBeretta;
 	float plrDmgColt45;

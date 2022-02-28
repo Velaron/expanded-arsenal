@@ -57,8 +57,8 @@ void EV_FireShotGunDouble( struct event_args_s *args );
 void EV_FireMP5( struct event_args_s *args );
 void EV_FireMP52( struct event_args_s *args );
 void EV_FireP904( struct event_args_s *args );
-void EV_FireP226( struct event_args_s *args );
 void EV_FireP9042( struct event_args_s *args );
+void EV_FireP226( struct event_args_s *args );
 void EV_FirePython( struct event_args_s *args );
 void EV_FireGauss( struct event_args_s *args );
 void EV_SpinGauss( struct event_args_s *args );
@@ -71,18 +71,16 @@ void EV_EgonStop( struct event_args_s *args );
 void EV_HornetGunFire( struct event_args_s *args );
 void EV_TripmineFire( struct event_args_s *args );
 void EV_SnarkFire( struct event_args_s *args );
-void EV_KnifeFire( struct event_args_s *args );
+// void EV_KnifeFire( struct event_args_s *args );
 void EV_FireAK47( struct event_args_s *args );
 void EV_FireCG( struct event_args_s *args );
 void EV_FireMP5A3( struct event_args_s *args );
 void EV_FireCDbarrel( struct event_args_s *args );
 void EV_FireBeretta( struct event_args_s *args );
 void EV_FireDeagle( struct event_args_s *args );
-void EV_FireP226( struct event_args_s *args );
 void EV_FireM41( struct event_args_s *args );
 void EV_FireM412( struct event_args_s *args );
-void EV_FirePiece( struct event_args_s *args );
-void EV_FirePipe( struct event_args_s *args );
+// void EV_FirePipe( struct event_args_s *args );
 void EV_FireAUTOSNIPER( struct event_args_s *args );
 void EV_FireD50( struct event_args_s *args );
 void EV_FireColt45( struct event_args_s *args );
@@ -2142,38 +2140,6 @@ void EV_Crowbar( event_args_t *args )
 //======================
 //	   CROWBAR END 
 //======================
-
-void EV_FirePiece( event_args_t *args )
-{
-	int idx;
-	vec3_t origin;
-	vec3_t angles;
-	vec3_t velocity;
-
-	idx = args->entindex;
-	VectorCopy( args->origin, origin );
-
-	//Play Swing sound
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/cbar_miss1.wav", 1, ATTN_NORM, 0, PITCH_NORM );
-
-	if ( EV_IsLocal( idx ) )
-	{
-		gEngfuncs.pEventAPI->EV_WeaponAnimation( CROWBAR_ATTACK1MISS, 1 );
-
-		switch ( ( g_iSwing++ ) % 3 )
-		{
-		case 0:
-			gEngfuncs.pEventAPI->EV_WeaponAnimation( CROWBAR_ATTACK1MISS, 1 );
-			break;
-		case 1:
-			gEngfuncs.pEventAPI->EV_WeaponAnimation( CROWBAR_ATTACK2MISS, 1 );
-			break;
-		case 2:
-			gEngfuncs.pEventAPI->EV_WeaponAnimation( CROWBAR_ATTACK3MISS, 1 );
-			break;
-		}
-	}
-}
 
 //======================
 //	  CROSSBOW START

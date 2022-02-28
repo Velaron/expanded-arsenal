@@ -57,9 +57,9 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define ROBOT_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define ROBOT_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define ROBOT_9MMAR       ( 1 << 0 )
-#define ROBOT_HANDGRENADE ( 1 << 1 )
-#define ROBOT_SHOTGUN     ( 1 << 3 )
+#define ROBOT_9MMAR       1
+#define ROBOT_HANDGRENADE 2
+#define ROBOT_SHOTGUN     4
 
 #define HEAD_GROUP         1
 #define HEAD_SFORCE        0
@@ -281,7 +281,7 @@ void CRobot ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, ROBOT_SHOTGUN ) )
+		if ( HasWeapon( ROBOT_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_chaingun", vecGunPos, vecGunAngles );
 		}
@@ -454,7 +454,7 @@ BOOL CRobot ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CRobot ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( ROBOT_HANDGRENADE | ROBOT_HANDGRENADE ) ) )
+	if ( !HasWeapon( ROBOT_HANDGRENADE ) )
 	{
 		return FALSE;
 	}
@@ -483,7 +483,7 @@ BOOL CRobot ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, ROBOT_HANDGRENADE ) )
+	if ( HasWeapon( ROBOT_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -529,7 +529,7 @@ BOOL CRobot ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, ROBOT_HANDGRENADE ) )
+	if ( HasWeapon( ROBOT_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -833,7 +833,7 @@ void CRobot ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, ROBOT_SHOTGUN ) )
+		if ( HasWeapon( ROBOT_SHOTGUN ) )
 		{
 		}
 		else
@@ -871,7 +871,7 @@ void CRobot ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case ROBOT_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, ROBOT_9MMAR ) )
+		if ( HasWeapon( ROBOT_9MMAR ) )
 		{
 			Shoot();
 
@@ -959,15 +959,14 @@ void CRobot ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = ROBOT_9MMAR | ROBOT_HANDGRENADE;
-		// pev->weapons = ROBOT_SHOTGUN;
-		// pev->weapons = ROBOT_9MMAR | ROBOT_GRENADELAUNCHER;
+		AddWeapon( ROBOT_9MMAR );
+		AddWeapon( ROBOT_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, ROBOT_SHOTGUN ) )
+	if ( HasWeapon( ROBOT_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -983,7 +982,7 @@ void CRobot ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, ROBOT_SHOTGUN ) )
+	if ( HasWeapon( ROBOT_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
@@ -1687,7 +1686,7 @@ void CRobot ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, ROBOT_9MMAR ) )
+		if ( HasWeapon( ROBOT_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1717,7 +1716,7 @@ void CRobot ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & ROBOT_HANDGRENADE )
+		if ( HasWeapon( ROBOT_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );

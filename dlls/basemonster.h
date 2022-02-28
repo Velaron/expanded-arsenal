@@ -330,5 +330,13 @@ public:
 	CBaseEntity* DropItem( const char *pszItemName, const Vector &vecPos, const Vector &vecAng );// drop an item.
 
 	float m_flLastYawTime;
+
+	byte m_iWeapons[MAX_WEAPON_BYTES];	// monster weapon flags
+	BOOL m_bHaveWeapons;
+
+	BOOL HasWeapon( int weaponnum ) { return FBitSet( m_iWeapons[weaponnum >> 3], BIT( weaponnum & 7 ) ); }
+	void AddWeapon( int weaponnum ) { SetBits( m_iWeapons[weaponnum >> 3], BIT( weaponnum & 7 ) ); }
+	void RemoveWeapon( int weaponnum ) { ClearBits( m_iWeapons[weaponnum >> 3], BIT( weaponnum & 7 ) ); }
+	void RemoveAllWeapons( void ) { memset( m_iWeapons, 0, sizeof( m_iWeapons ) ); }
 };
 #endif // BASEMONSTER_H

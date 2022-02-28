@@ -127,3 +127,13 @@ int CHud::MsgFunc_Concuss( const char *pszName, int iSize, void *pbuf )
 		this->m_StatusIcons.DisableIcon( "dmg_concuss" );
 	return 1;
 }
+
+int CHud::MsgFunc_Weapons( const char *pszName, int iSize, void *pbuf )
+{
+	BEGIN_READ( pbuf, iSize );
+
+	// update weapon bits
+	READ_BYTES( m_iWeaponBits, MAX_WEAPON_BYTES );
+
+	return 1;
+}

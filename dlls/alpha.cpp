@@ -57,9 +57,9 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define ALPHA_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define ALPHA_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define ALPHA_9MMAR       ( 1 << 0 )
-#define ALPHA_HANDGRENADE ( 1 << 1 )
-#define ALPHA_SHOTGUN     ( 1 << 3 )
+#define ALPHA_9MMAR       1
+#define ALPHA_HANDGRENADE 2
+#define ALPHA_SHOTGUN     3
 
 #define HEAD_GROUP     1
 #define HEAD_APHA      0
@@ -282,7 +282,7 @@ void CAlpha ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, ALPHA_SHOTGUN ) )
+		if ( HasWeapon( ALPHA_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_deagle", vecGunPos, vecGunAngles );
 		}
@@ -455,7 +455,7 @@ BOOL CAlpha ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CAlpha ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( ALPHA_HANDGRENADE | ALPHA_HANDGRENADE ) ) )
+	if ( !HasWeapon( ALPHA_HANDGRENADE ) )
 	{
 		return FALSE;
 	}
@@ -484,7 +484,7 @@ BOOL CAlpha ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, ALPHA_HANDGRENADE ) )
+	if ( HasWeapon( ALPHA_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -530,7 +530,7 @@ BOOL CAlpha ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, ALPHA_HANDGRENADE ) )
+	if ( HasWeapon( ALPHA_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -840,7 +840,7 @@ void CAlpha ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, ALPHA_SHOTGUN ) )
+		if ( HasWeapon( ALPHA_SHOTGUN ) )
 		{
 			DropItem( "weapon_deagle", vecGunPos, vecGunAngles );
 		}
@@ -880,7 +880,7 @@ void CAlpha ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case ALPHA_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, ALPHA_9MMAR ) )
+		if ( HasWeapon( ALPHA_9MMAR ) )
 		{
 			Shoot();
 
@@ -968,15 +968,14 @@ void CAlpha ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = ALPHA_9MMAR | ALPHA_HANDGRENADE;
-		// pev->weapons = ALPHA_SHOTGUN;
-		// pev->weapons = ALPHA_9MMAR | ALPHA_GRENADELAUNCHER;
+		AddWeapon( ALPHA_9MMAR );
+		AddWeapon( ALPHA_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, ALPHA_SHOTGUN ) )
+	if ( HasWeapon( ALPHA_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -992,7 +991,7 @@ void CAlpha ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, ALPHA_SHOTGUN ) )
+	if ( HasWeapon( ALPHA_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
@@ -1682,7 +1681,7 @@ void CAlpha ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, ALPHA_9MMAR ) )
+		if ( HasWeapon( ALPHA_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1712,7 +1711,7 @@ void CAlpha ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & ALPHA_HANDGRENADE )
+		if ( HasWeapon( ALPHA_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );

@@ -783,4 +783,10 @@ typedef struct
 	int	hitgroup;		// 0 == generic, non zero is specific body part
 } trace_t;
 
+// bit routines
+#define BIT( n )                      ( 1 << ( n ) )
+#define SetBits( iBitVector, bits )   ( ( iBitVector ) = ( iBitVector ) | ( bits ) )
+#define ClearBits( iBitVector, bits ) ( ( iBitVector ) = ( iBitVector ) & ~( bits ) )
+#define FBitSet( iBitVector, bit )    ( ( iBitVector ) & ( bit ) )
+
 #endif//CONST_H

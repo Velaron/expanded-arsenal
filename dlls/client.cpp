@@ -1722,7 +1722,6 @@ void UpdateClientData( const struct edict_s *ent, int sendweapons, struct client
 
 	cd->waterlevel		= pev->waterlevel;
 	cd->watertype		= pev->watertype;
-	cd->weapons		= pev->weapons;
 
 	// Vectors
 	cd->origin		= pev->origin;

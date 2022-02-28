@@ -330,6 +330,8 @@ public:
 	Vector m_vecLastViewAngles;
 
 	bool m_bSentBhopcap; // If false, the player just joined and needs a bhopcap message.
+
+	byte m_iClientWeapons[MAX_WEAPON_BYTES]; // client's known weapon flags
 };
 
 #define AUTOAIM_2DEGREES  0.0348994967025

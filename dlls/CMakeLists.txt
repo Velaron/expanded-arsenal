@@ -95,6 +95,7 @@ set(SVDLL_SOURCES
 	genericmonster.cpp
 	ggrenade.cpp
 	globals.cpp
+	glock.cpp
 	gman.cpp
 	guard.cpp
 	h_ai.cpp

@@ -32,6 +32,7 @@ char* READ_STRING( void );
 float READ_COORD( void );
 float READ_ANGLE( void );
 float READ_HIRESANGLE( void );
+void READ_BYTES( byte *out, int count );
 
 #endif // PARSEMSG_H
 

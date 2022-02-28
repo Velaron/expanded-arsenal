@@ -73,11 +73,6 @@ inline edict_t *FIND_ENTITY_BY_TARGET(edict_t *entStart, const char *pszName)
 #define WRITEKEY_VECTOR(pf, szKeyName, flX, flY, flZ)							\
 		ENGINE_FPRINTF(pf, "\"%s\" \"%f %f %f\"\n", szKeyName, flX, flY, flZ)
 
-// Keeps clutter down a bit, when using a float as a bit-vector
-#define SetBits(flBitVector, bits)		((flBitVector) = (int)(flBitVector) | (bits))
-#define ClearBits(flBitVector, bits)	((flBitVector) = (int)(flBitVector) & ~(bits))
-#define FBitSet(flBitVector, bit)		((int)(flBitVector) & (bit))
-
 // Makes these more explicit, and easier to find
 #define FILE_GLOBAL static
 #define DLL_GLOBAL
@@ -179,7 +174,7 @@ inline BOOL FStringNull(int iString)			{ return iString == iStringNull; }
 // All monsters need this data
 #define		DONT_BLEED			-1
 #define		BLOOD_COLOR_RED		(BYTE)247
-#define BLOOD_COLOR_BLACK       (BYTE)0
+#define 	BLOOD_COLOR_BLACK	(BYTE)0
 #define		BLOOD_COLOR_YELLOW	(BYTE)195
 #define		BLOOD_COLOR_GREEN	BLOOD_COLOR_YELLOW
 

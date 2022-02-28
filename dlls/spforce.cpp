@@ -57,10 +57,10 @@ extern DLL_GLOBAL int g_iSkillLevel;
 #define SPFORCE_MINIMUM_HEADSHOT_DAMAGE 15                        // must do at least this much damage in one shot to head to score a headshot kill
 #define SPFORCE_SENTENCE_VOLUME         (float)0.35               // volume of grunt sentences
 
-#define SPFORCE_9MMAR           ( 1 << 0 )
-#define SPFORCE_HANDGRENADE     ( 1 << 1 )
-#define SPFORCE_GRENADELAUNCHER ( 1 << 2 )
-#define SPFORCE_SHOTGUN         ( 1 << 3 )
+#define SPFORCE_9MMAR           1
+#define SPFORCE_HANDGRENADE     2
+#define SPFORCE_GRENADELAUNCHER 3
+#define SPFORCE_SHOTGUN         4
 
 #define HEAD_GROUP     1
 #define HEAD_SFORCE    0
@@ -282,7 +282,7 @@ void CSpforce ::GibMonster( void )
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 
 		CBaseEntity *pGun;
-		if ( FBitSet( pev->weapons, SPFORCE_SHOTGUN ) )
+		if ( HasWeapon( SPFORCE_SHOTGUN ) )
 		{
 			pGun = DropItem( "weapon_asniper", vecGunPos, vecGunAngles );
 		}
@@ -297,7 +297,7 @@ void CSpforce ::GibMonster( void )
 			pGun->pev->avelocity = Vector( 0, RANDOM_FLOAT( 200, 400 ), 0 );
 		}
 
-		if ( FBitSet( pev->weapons, SPFORCE_GRENADELAUNCHER ) )
+		if ( HasWeapon( SPFORCE_GRENADELAUNCHER ) )
 		{
 			pGun = DropItem( "ammo_ARgrenades", vecGunPos, vecGunAngles );
 			pGun = DropItem( "weapon_deagle", vecGunPos, vecGunAngles );
@@ -467,7 +467,7 @@ BOOL CSpforce ::CheckRangeAttack1( float flDot, float flDist )
 //=========================================================
 BOOL CSpforce ::CheckRangeAttack2( float flDot, float flDist )
 {
-	if ( !FBitSet( pev->weapons, ( SPFORCE_HANDGRENADE | SPFORCE_GRENADELAUNCHER ) ) )
+	if ( !HasWeapon( SPFORCE_HANDGRENADE ) && !HasWeapon( SPFORCE_GRENADELAUNCHER ) )
 	{
 		return FALSE;
 	}
@@ -496,7 +496,7 @@ BOOL CSpforce ::CheckRangeAttack2( float flDot, float flDist )
 
 	Vector vecTarget;
 
-	if ( FBitSet( pev->weapons, SPFORCE_HANDGRENADE ) )
+	if ( HasWeapon( SPFORCE_HANDGRENADE ) )
 	{
 		// find feet
 		if ( RANDOM_LONG( 0, 1 ) )
@@ -542,7 +542,7 @@ BOOL CSpforce ::CheckRangeAttack2( float flDot, float flDist )
 		return m_fThrowGrenade;
 	}
 
-	if ( FBitSet( pev->weapons, SPFORCE_HANDGRENADE ) )
+	if ( HasWeapon( SPFORCE_HANDGRENADE ) )
 	{
 		Vector vecToss = VecCheckToss( pev, GetGunPosition(), vecTarget, 0.5 );
 
@@ -846,7 +846,7 @@ void CSpforce ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		SetBodygroup( GUN_GROUP, GUN_NONE );
 
 		// now spawn a gun.
-		if ( FBitSet( pev->weapons, SPFORCE_SHOTGUN ) )
+		if ( HasWeapon( SPFORCE_SHOTGUN ) )
 		{
 			DropItem( "weapon_asniper", vecGunPos, vecGunAngles );
 		}
@@ -854,7 +854,7 @@ void CSpforce ::HandleAnimEvent( MonsterEvent_t *pEvent )
 		{
 			DropItem( "weapon_m41", vecGunPos, vecGunAngles );
 		}
-		if ( FBitSet( pev->weapons, SPFORCE_GRENADELAUNCHER ) )
+		if ( HasWeapon( SPFORCE_GRENADELAUNCHER ) )
 		{
 			DropItem( "ammo_ARgrenades", BodyTarget( pev->origin ), vecGunAngles );
 		}
@@ -900,7 +900,7 @@ void CSpforce ::HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case SPFORCE_AE_BURST1:
 	{
-		if ( FBitSet( pev->weapons, SPFORCE_9MMAR ) )
+		if ( HasWeapon( SPFORCE_9MMAR ) )
 		{
 			Shoot();
 
@@ -988,15 +988,14 @@ void CSpforce ::Spawn()
 
 	m_HackedGunPos = Vector( 0, 0, 55 );
 
-	if ( pev->weapons == 0 )
+	if ( !m_bHaveWeapons )
 	{
 		// initialize to original values
-		pev->weapons = SPFORCE_9MMAR | SPFORCE_HANDGRENADE;
-		// pev->weapons = SPFORCE_SHOTGUN;
-		// pev->weapons = SPFORCE_9MMAR | SPFORCE_GRENADELAUNCHER;
+		AddWeapon( SPFORCE_9MMAR );
+		AddWeapon( SPFORCE_HANDGRENADE );
 	}
 
-	if ( FBitSet( pev->weapons, SPFORCE_SHOTGUN ) )
+	if ( HasWeapon( SPFORCE_SHOTGUN ) )
 	{
 		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
 		m_cClipSize = 8;
@@ -1012,11 +1011,11 @@ void CSpforce ::Spawn()
 	else
 		pev->skin = 1; // dark skin
 
-	if ( FBitSet( pev->weapons, SPFORCE_SHOTGUN ) )
+	if ( HasWeapon( SPFORCE_SHOTGUN ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN );
 	}
-	else if ( FBitSet( pev->weapons, SPFORCE_GRENADELAUNCHER ) )
+	else if ( HasWeapon( SPFORCE_GRENADELAUNCHER ) )
 	{
 		SetBodygroup( HEAD_GROUP, HEAD_M203 );
 		pev->skin = 1; // alway dark skin
@@ -1707,7 +1706,7 @@ void CSpforce ::SetActivity( Activity NewActivity )
 	{
 	case ACT_RANGE_ATTACK1:
 		// grunt is either shooting standing or shooting crouched
-		if ( FBitSet( pev->weapons, SPFORCE_9MMAR ) )
+		if ( HasWeapon( SPFORCE_9MMAR ) )
 		{
 			if ( m_fStanding )
 			{
@@ -1737,7 +1736,7 @@ void CSpforce ::SetActivity( Activity NewActivity )
 	case ACT_RANGE_ATTACK2:
 		// grunt is going to a secondary long range attack. This may be a thrown
 		// grenade or fired grenade, we must determine which and pick proper sequence
-		if ( pev->weapons & SPFORCE_HANDGRENADE )
+		if ( HasWeapon( SPFORCE_HANDGRENADE ) )
 		{
 			// get toss anim
 			iSequence = LookupSequence( "throwgrenade" );
@@ -1963,7 +1962,7 @@ Schedule_t *CSpforce ::GetSchedule( void )
 		}
 		// can grenade launch
 
-		else if ( FBitSet( pev->weapons, SPFORCE_GRENADELAUNCHER ) && HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_SPFORCE_GRENADE ) )
+		else if ( HasWeapon( SPFORCE_GRENADELAUNCHER ) && HasConditions( bits_COND_CAN_RANGE_ATTACK2 ) && OccupySlot( bits_SLOTS_SPFORCE_GRENADE ) )
 		{
 			// shoot a grenade if you can
 			return GetScheduleOfType( SCHED_RANGE_ATTACK2 );
